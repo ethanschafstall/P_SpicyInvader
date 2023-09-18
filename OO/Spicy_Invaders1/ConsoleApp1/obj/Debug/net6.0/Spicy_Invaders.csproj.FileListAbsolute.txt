@@ -1,0 +1,15 @@
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.exe
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.deps.json
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.runtimeconfig.json
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.dll
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.pdb
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.csproj.AssemblyReference.cache
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.AssemblyInfoInputs.cache
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.AssemblyInfo.cs
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.csproj.CoreCompileInputs.cache
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.dll
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\refint\Spicy_Invaders.dll
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.pdb
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\Spicy_Invaders.genruntimeconfig.cache
+C:\Users\po01imj\source\repos\Spicy_Invaders1\ConsoleApp1\obj\Debug\net6.0\ref\Spicy_Invaders.dll

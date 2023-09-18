@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Spicy_Invaders/1.0.0": {
+        "runtime": {
+          "Spicy_Invaders.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Spicy_Invaders/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
