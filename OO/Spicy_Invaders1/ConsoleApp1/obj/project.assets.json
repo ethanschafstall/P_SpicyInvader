@@ -8,19 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\School\\.nuget\\packages\\": {}
+    "C:\\Users\\po01imj\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+      "projectUniqueName": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
       "projectName": "Spicy_Invaders",
-      "projectPath": "F:\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
-      "packagesPath": "C:\\Users\\School\\.nuget\\packages\\",
-      "outputPath": "F:\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
+      "projectPath": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+      "packagesPath": "C:\\Users\\po01imj\\.nuget\\packages\\",
+      "outputPath": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\School\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\po01imj\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -51,8 +55,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -61,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
