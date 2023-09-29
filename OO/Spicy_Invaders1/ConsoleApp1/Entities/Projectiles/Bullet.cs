@@ -10,11 +10,9 @@ namespace Spicy_Invaders
     {
         public Bullet(int x, int y, Direction direction = Direction.Up)
         {
-            XPos = x;
-            YPos = y;
+            Position = new Vector(x, y);
             CurrentDirection = direction;
-            VerticalMoveSpeed = 2;
-            HorizontalMoveSpeed = 2;
+            Velocity = new Vector(2, 2);
             Damage = 35;
         }
         public Bullet() { }

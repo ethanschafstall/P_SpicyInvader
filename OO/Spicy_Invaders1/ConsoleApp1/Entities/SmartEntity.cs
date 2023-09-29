@@ -19,29 +19,37 @@ namespace Spicy_Invaders
             MissileLauncher
         }
 
-        public WeaponType weaponType;
+        public WeaponType weaponType { get; set; }
 
-        public int HealthPoints;
+        public int HealthPoints { get; set; }
 
-        public Direction FaceDirection;
+        public Direction FaceDirection { get; set; }
 
-        public int ShootXPos;
+        public int ShootXPos { get; set; }
 
-        public int ShootYPos;
+        public int ShootYPos { get; set; }
 
-        public bool IsAlive;
+        public Vector Hitbox { get; set; }
+
+        public Vector ShootBox { get; set; }
+
+        public int XPos { get; set; }
+
+        public bool IsAlive { get; set; }
+
+
         protected SmartEntity()
         {
         }
         public Projectile Shoot()
         {
-            ShootXPos = XPos;
-            ShootYPos = YPos;
+            ShootXPos = Position.X;
+            ShootYPos = Position.Y;
 
             switch (weaponType)
             {
                 case WeaponType.Gun:
-                    return new Bullet(XPos, YPos, FaceDirection);
+                    return new Bullet(ShootXPos, ShootYPos, FaceDirection);
                     break;
                 case WeaponType.MissileLauncher:
                     return new Missile(ShootXPos, ShootYPos, FaceDirection);

@@ -12,11 +12,11 @@ namespace Spicy_Invaders
         {
         }
         public Player(int x, int y) 
-        { 
-            XPos = x;
-            YPos = y;
-            weaponType = WeaponType.Gun;
+        {
+            Position = new Vector(x, y);
+            Velocity = new Vector(1, 1);
+            weaponType = WeaponType.MissileLauncher;
             FaceDirection = Direction.Up;
-        }
+        }  
     }
 }

@@ -32,6 +32,13 @@ namespace Spicy_Invaders
 
         private static List<ConsoleColor> _pepperColors;
 
+        private static List<string> _missileSpriteDown;
+
+        private static List<ConsoleColor> _missileColorsDown;
+
+        private static List<string> _missileSpriteUp;
+
+        private static List<ConsoleColor> _missileColorsUp;
         static GameEngine()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -46,13 +53,21 @@ namespace Spicy_Invaders
 
             _grapeColors = new List<ConsoleColor> { ConsoleColor.DarkMagenta, ConsoleColor.Green };
 
-            _melonSprite = new List<string> { "/¯¯¯\\", "|   |", "\\___/" };
+            _melonSprite = new List<string> { "/¯T¯\\", "| | |", "\\_|_/" };
 
             _melonColors = new List<ConsoleColor> { ConsoleColor.DarkGreen, ConsoleColor.DarkGreen };
 
             _pepperSprite = new List<string> { "/\\ ", "// ", "J  " };
 
             _pepperColors = new List<ConsoleColor> { ConsoleColor.Red, ConsoleColor.DarkGreen };
+
+            _missileSpriteDown = new List<string> { "*", "|", "v" };
+
+            _missileSpriteUp = new List<string> { "^", "|", "*" };
+
+            _missileColorsDown = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkGray, ConsoleColor.Red};
+
+            _missileColorsUp = new List<ConsoleColor> { ConsoleColor.Red, ConsoleColor.DarkGray, ConsoleColor.DarkYellow };
         }
 
         public static void Init()
@@ -72,19 +87,19 @@ namespace Spicy_Invaders
             {
                 switch (enemies[i].enemyType)
                 {
-                    case Enemy.EnemyType.Strawberry:
+                    case EnemyType.Strawberry:
                         currentEnemySprite = _strawberrySprite;
                         currentEnemyColors = _strawberryColors;
                         break;
-                    case Enemy.EnemyType.Melon:
+                    case EnemyType.Melon:
                         currentEnemySprite = _melonSprite;
                         currentEnemyColors = _melonColors;
                         break;
-                    case Enemy.EnemyType.Banana:
+                    case EnemyType.Banana:
                         currentEnemySprite = _bananaSprite;
                         currentEnemyColors = _bananaColors;
                         break;
-                    case Enemy.EnemyType.Grape:
+                    case EnemyType.Grape:
                         currentEnemySprite = _grapeSprite;
                         currentEnemyColors = _grapeColors;
                         break;
@@ -100,7 +115,7 @@ namespace Spicy_Invaders
                             Console.ForegroundColor = currentEnemyColors[1];
                             break;
                     }
-                    Console.SetCursorPosition(enemies[i].XPos, enemies[i].YPos + j);
+                    Console.SetCursorPosition(enemies[i].Position.X, enemies[i].Position.Y + j);
                     Console.Write(currentEnemySprite[j]);
                 }
 
@@ -120,18 +135,51 @@ namespace Spicy_Invaders
                         Console.ForegroundColor = _pepperColors[1];
                         break;
                 }
-                Console.SetCursorPosition(myPlayer.XPos, myPlayer.YPos + i);
+                Console.SetCursorPosition(myPlayer.Position.X, myPlayer.Position.Y + i);
                 Console.Write(_pepperSprite[i]);
             }
             Console.ResetColor();
         }
         public static void DrawProjectiles(List<Projectile> projectiles)
         {
+            List<string> currentMissileSprite = new List<string> { };
+            List<ConsoleColor> currentMissileColors = new List<ConsoleColor> { };
             if (projectiles == null) return;
             for (int i = 0; i < projectiles.Count; i++) 
             {
-                Console.SetCursorPosition(projectiles[i].XPos, projectiles[i].YPos);
-                Console.Write("|");
+                Console.SetCursorPosition(projectiles[i].Position.X, projectiles[i].Position.Y);
+                switch (projectiles[i])
+                {
+                    case Bullet:
+                        Console.Write("|");
+                        break;
+                    case Laser:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write("¦");
+                        Console.ResetColor();
+                        break;
+                    case Missile:
+                        switch (projectiles[i].CurrentDirection)
+                        {
+                            case Direction.Up:
+                                currentMissileColors = _missileColorsUp;
+                                currentMissileSprite = _missileSpriteUp;
+                                break;
+                            case Direction.Down:
+                                currentMissileColors = _missileColorsDown;
+                                currentMissileSprite = _missileSpriteDown;
+                                break;
+                        }
+                        for (int j = 0; j < currentMissileSprite.Count; j++)
+                        {
+                            Console.SetCursorPosition(projectiles[i].Position.X, projectiles[i].Position.Y + j);
+                            Console.ForegroundColor = currentMissileColors[j];
+                            Console.Write(currentMissileSprite[j]);
+                            Console.ResetColor();
+
+                        }
+                        break;
+                }
             }
         }
         

@@ -6,39 +6,28 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
+    public enum EnemyType
+    {
+        Strawberry = 1,
+        Banana = 2,
+        Grape = 3,
+        Melon = 4
+    }
     public class Enemy : SmartEntity
     {
-        public enum EnemyType
-        {
-            Strawberry = 50,
-            Banana = 100,
-            Grape = 150,
-            Melon = 200
-        }
 
-        public EnemyType enemyType;
+        public EnemyType enemyType { get; }
 
-        public bool CanFire;
+        public bool CanFire { get; set; }
 
         public Enemy(int x, int y, EnemyType type, Direction direction = Direction.Right)
         {
             CurrentDirection = direction;
-            XPos = x;
-            YPos = y;
             enemyType = type;
-            HealthPoints = (int)type;
-            weaponType = WeaponType.Gun;
             FaceDirection = Direction.Down;
-            if (type == EnemyType.Melon)
-            {
-                VerticalMoveSpeed = 3;
-                HorizontalMoveSpeed = 3;
-                CanFire = false; 
-            }
-            else
-            {
-                CanFire = true;
-            }
+            Position = new Vector(x, y);
+            Velocity = new Vector();
+            weaponType = WeaponType.Gun;
         }
 
         //public Drop DropUpgrade()

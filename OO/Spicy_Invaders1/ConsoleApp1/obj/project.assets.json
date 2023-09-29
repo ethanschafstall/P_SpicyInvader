@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+      "projectUniqueName": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
       "projectName": "Spicy_Invaders",
-      "projectPath": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+      "projectPath": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
       "packagesPath": "C:\\Users\\po01imj\\.nuget\\packages\\",
-      "outputPath": "D:\\PROJETS - 777\\Projets\\2023-2024\\1st Trimester\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

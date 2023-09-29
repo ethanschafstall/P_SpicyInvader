@@ -6,24 +6,22 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
-    /// <summary>
-    /// Sprites are all objects that move, so this includes player, enemies, projectiles, and drops.
-    /// </summary>
+
+    public enum Direction
+    {
+        None,
+        Up,
+        Down,
+        Left,
+        Right,
+    }
     public class MovableEntity
     {
-        public enum Direction 
-        { 
-            None,
-            Up,
-            Down,
-            Left,
-            Right,
-        }
         public Direction CurrentDirection { get; set; }
-        public int XPos { get; set; }
-        public int YPos { get; set; }
-        public int HorizontalMoveSpeed { get; set; } = 1;
-        public int VerticalMoveSpeed { get; set; } = 1;
+
+        public Vector Position { get; set; }
+
+        public Vector Velocity { get; set; } 
         protected MovableEntity() { }
         public void Move(Direction directionToGo = Direction.None)
         {
@@ -32,21 +30,21 @@ namespace Spicy_Invaders
             {
                 directionToGo = CurrentDirection;
             }
-                switch (directionToGo)
-                {
-                    case Direction.Up:
-                        YPos -= VerticalMoveSpeed;
-                        break;
-                    case Direction.Down:
-                        YPos += VerticalMoveSpeed;
-                        break;
-                    case Direction.Left:
-                        XPos -= HorizontalMoveSpeed;
-                        break;
-                    case Direction.Right:
-                        XPos += HorizontalMoveSpeed;
-                        break;
-                }
+            switch (directionToGo)
+            {
+                case Direction.Up:
+                    Position.Y -= Velocity.Y;
+                    break;
+                case Direction.Down:
+                    Position.Y += Velocity.Y;
+                    break;
+                case Direction.Left:
+                    Position.X -= Velocity.X;
+                    break;
+                case Direction.Right:
+                    Position.X += Velocity.X;
+                    break;
+            }
         }
     }
 }

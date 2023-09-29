@@ -10,11 +10,9 @@ namespace Spicy_Invaders
     {
         public Laser(int x, int y, Direction direction = Direction.Up)
         {
-            XPos = x;
-            YPos = y;
+            Position = new Vector(x, y);
             CurrentDirection = direction;
-            VerticalMoveSpeed = 3;
-            HorizontalMoveSpeed = 3;
+            Velocity = new Vector(3, 3);
             Damage = 25;
         }
         public Laser() { }

@@ -10,11 +10,9 @@ namespace Spicy_Invaders
     {
         public Missile(int x, int y, Direction direction = Direction.Up) 
         {
-            XPos = x;
-            YPos = y;
+            Position = new Vector(x, y);
             CurrentDirection = direction;
-            VerticalMoveSpeed = 1;
-            HorizontalMoveSpeed = 1;
+            Velocity = new Vector(1, 1);
             Damage = 75;
         }
         public Missile() { }
