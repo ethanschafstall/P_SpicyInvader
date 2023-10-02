@@ -8,7 +8,7 @@ GRANT SELECT ON db_space_invaders.t_arme TO r_player;
 GRANT INSERT, SELECT ON db_space_invaders.t_commande TO r_player;
 
 GRANT SELECT ON db_space_invaders.t_joueur TO r_shopkeeper;
-GRANT UPDATE, SELECT, DELETE ON db_space_invaders.t_arme TO r_shopkeeper;
+GRANT ALTER, SELECT, DELETE ON db_space_invaders.t_arme TO r_shopkeeper;
 GRANT SELECT ON db_space_invaders.t_commande TO r_shopkeeper;
 
 CREATE USER 'admin1'@'localhost' IDENTIFIED BY 'password';
