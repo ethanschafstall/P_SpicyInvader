@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
-    public enum EnemyType
-    {
-        Strawberry = 1,
-        Banana = 2,
-        Grape = 3,
-        Melon = 4
-    }
     public class Enemy : SmartEntity
     {
 
@@ -22,7 +15,7 @@ namespace Spicy_Invaders
 
         public Enemy(int x, int y, EnemyType type, Direction direction = Direction.Right)
         {
-            CurrentDirection = direction;
+            TravelDirection = direction;
             enemyType = type;
             FaceDirection = Direction.Down;
             Position = new Vector(x, y);
