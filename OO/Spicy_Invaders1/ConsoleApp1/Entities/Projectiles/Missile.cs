@@ -8,12 +8,13 @@ namespace Spicy_Invaders
 {
     public class Missile : Projectile
     {
-        public Missile(int x, int y, Direction direction = Direction.Up) 
+        public Missile(int x, int y, SmartEntity origin, Direction direction = Direction.Up) 
         {
             Position = new Vector(x, y);
-            CurrentDirection = direction;
+            Shooter = origin;
+            TravelDirection = direction;
             Velocity = new Vector(1, 1);
-            Damage = 3;
+            Damage = 75;
         }
         public Missile() { }
     }

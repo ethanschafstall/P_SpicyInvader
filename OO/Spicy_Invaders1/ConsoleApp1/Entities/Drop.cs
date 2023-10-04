@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
-    public enum DropType
-    {
-        weaponUpgrade,
-    }
+
     public class Drop : MovableEntity
     {
         public DropType Type { get; set; }
@@ -17,7 +14,7 @@ namespace Spicy_Invaders
         {
             Position = new Vector(x, y);
             Velocity = new Vector(2, 2);
-            CurrentDirection = Direction.Down;
+            TravelDirection = Direction.Down;
             Type = dropType;
         }
     }

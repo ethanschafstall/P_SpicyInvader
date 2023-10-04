@@ -8,12 +8,13 @@ namespace Spicy_Invaders
 {
     public class Bullet : Projectile
     {
-        public Bullet(int x, int y, Direction direction = Direction.Up)
+        public Bullet(int x, int y, SmartEntity origin, Direction direction = Direction.Up)
         {
             Position = new Vector(x, y);
-            CurrentDirection = direction;
+            Shooter = origin;
+            TravelDirection = direction;
             Velocity = new Vector(2, 2);
-            Damage = 1;
+            Damage = 35;
         }
         public Bullet() { }
     }

@@ -37,13 +37,10 @@ namespace Spicy_Invaders
 
         public bool IsAlive { get; set; }
 
-        public bool CanFire { get; set; }
-
 
         protected SmartEntity()
         {
         }
-        public virtual void Move() { base.Move(); }
         public Projectile Shoot()
         {
             ShootXPos = Position.X;
@@ -52,13 +49,13 @@ namespace Spicy_Invaders
             switch (weaponType)
             {
                 case WeaponType.Gun:
-                    return new Bullet(ShootXPos, ShootYPos, FaceDirection);
+                    return new Bullet(ShootXPos, ShootYPos, this, FaceDirection);
                     break;
                 case WeaponType.MissileLauncher:
-                    return new Missile(ShootXPos, ShootYPos, FaceDirection);
+                    return new Missile(ShootXPos, ShootYPos, this, FaceDirection);
                     break;
                 case WeaponType.LaserGun:
-                    return new Laser(ShootXPos, ShootYPos, FaceDirection);
+                    return new Laser(ShootXPos, ShootYPos, this, FaceDirection);
                     break;
                 default:
                     throw new NotImplementedException("unknown weapon type");

@@ -8,12 +8,13 @@ namespace Spicy_Invaders
 {
     public class Laser : Projectile
     {
-        public Laser(int x, int y, Direction direction = Direction.Up)
+        public Laser(int x, int y, SmartEntity origin, Direction direction = Direction.Up)
         {
             Position = new Vector(x, y);
-            CurrentDirection = direction;
+            Shooter = origin;
+            TravelDirection = direction;
             Velocity = new Vector(3, 3);
-            Damage = 2;
+            Damage = 25;
         }
         public Laser() { }
     }
