@@ -13,7 +13,7 @@ namespace Spicy_Invaders
             Position = new Vector(x, y);
             CurrentDirection = direction;
             Velocity = new Vector(1, 1);
-            Damage = 75;
+            Damage = 3;
         }
         public Missile() { }
     }

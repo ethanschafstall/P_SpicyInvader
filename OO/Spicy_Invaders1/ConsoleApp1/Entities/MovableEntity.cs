@@ -23,7 +23,7 @@ namespace Spicy_Invaders
 
         public Vector Velocity { get; set; } 
         protected MovableEntity() { }
-        public void Move(Direction directionToGo = Direction.None)
+        public virtual void Move(Direction directionToGo = Direction.None)
         {
             // if parameter == none then default to global MoveDirection variable
             if (directionToGo == Direction.None)

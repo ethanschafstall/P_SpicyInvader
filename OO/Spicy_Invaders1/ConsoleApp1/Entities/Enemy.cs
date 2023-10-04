@@ -18,7 +18,7 @@ namespace Spicy_Invaders
 
         public EnemyType enemyType { get; }
 
-        public bool CanFire { get; set; }
+        public bool IsDamaged { get; set; }
 
         public Enemy(int x, int y, EnemyType type, Direction direction = Direction.Right)
         {
@@ -29,10 +29,11 @@ namespace Spicy_Invaders
             Velocity = new Vector();
             weaponType = WeaponType.Gun;
         }
+        public override void Move()
+        {
+            base.Move();
+            Hitbox = new Vector(Position.X+Velocity.X/2, Position.Y+ Velocity.Y/2);
 
-        //public Drop DropUpgrade()
-        //{
-        //    //return new Drop(1,1);
-        //}
+        }
     }
 }

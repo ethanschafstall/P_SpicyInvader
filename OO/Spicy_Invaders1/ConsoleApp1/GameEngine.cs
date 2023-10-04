@@ -73,6 +73,9 @@ namespace Spicy_Invaders
         public static void Init()
         {
             Console.CursorVisible = false;
+            Console.SetWindowSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
+            Console.SetBufferSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
+            Console.Title = "Spicy Invaders";
         }
         public static void Clear()
         {
@@ -85,24 +88,32 @@ namespace Spicy_Invaders
             if (enemies == null) return;
             for (int i = 0; i < enemies.Count; i++)
             {
-                switch (enemies[i].enemyType)
+                if (enemies[i].IsDamaged == true)
                 {
-                    case EnemyType.Strawberry:
-                        currentEnemySprite = _strawberrySprite;
-                        currentEnemyColors = _strawberryColors;
-                        break;
-                    case EnemyType.Melon:
-                        currentEnemySprite = _melonSprite;
-                        currentEnemyColors = _melonColors;
-                        break;
-                    case EnemyType.Banana:
-                        currentEnemySprite = _bananaSprite;
-                        currentEnemyColors = _bananaColors;
-                        break;
-                    case EnemyType.Grape:
-                        currentEnemySprite = _grapeSprite;
-                        currentEnemyColors = _grapeColors;
-                        break;
+                    currentEnemyColors = new List<ConsoleColor> { ConsoleColor.Red };
+                }
+                else
+                {
+                    switch (enemies[i].enemyType)
+                    {
+                        case EnemyType.Strawberry:
+                            currentEnemySprite = _strawberrySprite;
+                            currentEnemyColors = _strawberryColors;
+                            break;
+                        case EnemyType.Melon:
+                            currentEnemySprite = _melonSprite;
+                            currentEnemyColors = _melonColors;
+                            break;
+                        case EnemyType.Banana:
+                            currentEnemySprite = _bananaSprite;
+                            currentEnemyColors = _bananaColors;
+                            break;
+                        case EnemyType.Grape:
+                            currentEnemySprite = _grapeSprite;
+                            currentEnemyColors = _grapeColors;
+                            break;
+                    }
+
                 }
                 for (int j = 0; j < currentEnemySprite.Count; j++)
                 {
@@ -152,6 +163,7 @@ namespace Spicy_Invaders
                 {
                     case Bullet:
                         Console.Write("|");
+                        Console.ResetColor();
                         break;
                     case Laser:
                         Console.ForegroundColor = ConsoleColor.DarkRed;

@@ -37,10 +37,13 @@ namespace Spicy_Invaders
 
         public bool IsAlive { get; set; }
 
+        public bool CanFire { get; set; }
+
 
         protected SmartEntity()
         {
         }
+        public virtual void Move() { base.Move(); }
         public Projectile Shoot()
         {
             ShootXPos = Position.X;

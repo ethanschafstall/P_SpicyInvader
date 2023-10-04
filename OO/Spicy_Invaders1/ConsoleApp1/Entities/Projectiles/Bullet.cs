@@ -13,7 +13,7 @@ namespace Spicy_Invaders
             Position = new Vector(x, y);
             CurrentDirection = direction;
             Velocity = new Vector(2, 2);
-            Damage = 35;
+            Damage = 1;
         }
         public Bullet() { }
     }

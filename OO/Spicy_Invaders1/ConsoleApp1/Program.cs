@@ -9,7 +9,7 @@ namespace Spicy_Invaders
             List<Projectile> playerProjectiles = new List<Projectile>();
 
             Player newPlayer = new Player(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
-
+            newPlayer.CanFire = true;
             List<Enemy> myEnemies = new List<Enemy>();
             List<Enemy> myMelons = new List<Enemy>();
 
@@ -24,9 +24,12 @@ namespace Spicy_Invaders
                 }
                 if (counter % 20 == 0)
                 {
-                    myMelons.Add(SpawnEnemy(true));
+                    myEnemies.Add(SpawnEnemy(true));
                 }
-
+                if (counter % 2 == 0)
+                {
+                    newPlayer.CanFire = true;
+                }
                 CheckProjectileBounderies(ref enemyProjectiles);
                 CheckProjectileBounderies(ref playerProjectiles);
                 if (counter % .5 == 0)
@@ -47,8 +50,8 @@ namespace Spicy_Invaders
 
                 PlayerControls(ref newPlayer, ref playerProjectiles);
                 GameEngine.Clear();
+                CheckEnemyCollisions(ref myEnemies, ref playerProjectiles);
                 GameEngine.DrawEnemies(myEnemies);
-                GameEngine.DrawEnemies(myMelons);
                 GameEngine.DrawProjectiles(enemyProjectiles);
                 GameEngine.DrawProjectiles(playerProjectiles);
                 GameEngine.DrawPlayer(newPlayer);
@@ -93,7 +96,7 @@ namespace Spicy_Invaders
             else
             {
                 Enemy spawnedMelon = new Enemy(GameSettings.ENEMY_START_POS.X, GameSettings.ENEMY_START_POS.Y, EnemyType.Melon, Direction.Right);
-                spawnedMelon.Velocity = new Vector(3, 3);
+                spawnedMelon.Velocity = new Vector(6, 1);
                 return spawnedMelon;
             }
         }
@@ -180,7 +183,8 @@ namespace Spicy_Invaders
                         direction = Direction.Right;
                         break;
                     case ConsoleKey.Spacebar:
-                        playerProjectiles.Add(player.Shoot());
+                        if (player.CanFire) { playerProjectiles.Add(player.Shoot()); }
+                        player.CanFire = false;
                         break;
                 }
                 if (direction == Direction.Left && !(player.Position.X > GameSettings.GAMEBOARD_X_START))
@@ -192,6 +196,31 @@ namespace Spicy_Invaders
                     return;
                 }
                 player.Move(direction);
+            }
+        }
+
+        static void CheckEnemyCollisions(ref List<Enemy> myEnemies, ref List<Projectile> playerProjectiles)
+        {
+            for (int i = 0; i < playerProjectiles.Count; i++)
+            {
+                for (int j = 0; j < myEnemies.Count; j++)
+                {
+                    // Adjust this threshold as needed for your game to consider a hit
+                    int collisionThreshold = 2;
+
+                    if (Math.Abs(playerProjectiles[i].Position.X - myEnemies[j].Position.X) <= collisionThreshold
+                        && Math.Abs(playerProjectiles[i].Position.Y - myEnemies[j].Position.Y) <= collisionThreshold)
+                    {
+                        myEnemies[j].HealthPoints -= playerProjectiles[i].Damage;
+                        myEnemies[j].IsDamaged = true;
+                        playerProjectiles.RemoveAt(i);
+                        if (myEnemies[j].HealthPoints <= 0)
+                        {
+                            myEnemies.RemoveAt(j);
+                        }
+                        break;
+                    }
+                }
             }
         }
     }
