@@ -8,7 +8,6 @@ namespace Spicy_Invaders
 {
     public class Enemy : SmartEntity
     {
-
         public EnemyType enemyType { get; }
 
         public bool CanFire { get; set; }

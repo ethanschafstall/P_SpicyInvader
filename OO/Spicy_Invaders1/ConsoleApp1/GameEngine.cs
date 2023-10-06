@@ -73,6 +73,8 @@ namespace Spicy_Invaders
         public static void Init()
         {
             Console.CursorVisible = false;
+            Console.SetWindowSize(GameSettings.WINDOW_WIDTH, GameSettings.WINDOW_HEIGHT);
+            Console.SetBufferSize(GameSettings.WINDOW_WIDTH,GameSettings.WINDOW_HEIGHT);
         }
         public static void Clear()
         {

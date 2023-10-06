@@ -22,11 +22,23 @@ namespace Spicy_Invaders
 
         public const int GAMEBOARD_Y_LIMIT = 26;
 
-        public const EnemySpeed ENEMYSPEED = EnemySpeed.fast;
+        public const int WINDOW_HEIGHT = 50;
+
+        public const int WINDOW_WIDTH = 170;
+
+        public const int ENEMYVELOCITY = 1;
+
+        public const int ENEMYMOVERATE = ENEMYVELOCITY*2;
+
+        public const int ENEMYSPAWNRATE = ENEMYMOVERATE*5;
+
+        public const int PROJECTILEMOVERATE = 3;
+
+        public const int PROJECTILESPAWNRATE = PROJECTILEMOVERATE*2;
 
         public static Vector ENEMY_START_POS = new Vector(1, 1);
 
-        public static Vector PLAYER_START_POS = new Vector((GAMEBOARD_X_LIMIT - GAMEBOARD_X_START) / 2, GAMEBOARD_Y_LIMIT + 1);
+        public static Vector PLAYER_START_POS = new Vector((GAMEBOARD_X_LIMIT - GAMEBOARD_X_START) / 2, GAMEBOARD_Y_LIMIT - 3);
 
         public static Language Language { get; set; }
 

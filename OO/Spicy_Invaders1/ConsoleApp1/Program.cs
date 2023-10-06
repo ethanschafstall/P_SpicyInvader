@@ -15,53 +15,55 @@ namespace Spicy_Invaders
 
             double counter = 0;
             GameEngine.Init();
+            new Game().Run();
 
-            while (true)
-            {
-                if ((counter == 0 || counter % 1.50 == 0))
-                {
-                    myEnemies.Add(SpawnEnemy());
-                }
-                if (counter % 20 == 0)
-                {
-                    myMelons.Add(SpawnEnemy(true));
-                }
 
-                CheckProjectileBounderies(ref enemyProjectiles);
-                CheckProjectileBounderies(ref playerProjectiles);
-                if (counter % .5 == 0)
-                {
-                    MoveEnemy(ref myEnemies);
-                    //MoveProjectile(ref enemyProjectiles);
-                }
-                if (counter % .25 == 0)
-                {
-                    MoveEnemy(ref myMelons);
-                    //MoveProjectile(ref enemyProjectiles);
-                }
-                if (counter % 0.50 == 0)
-                {
-                    MoveProjectile(ref enemyProjectiles);
-                    MoveProjectile(ref playerProjectiles);
-                }
+            //while (true)
+            //{
+            //    if ((counter == 0 || counter % 1.50 == 0))
+            //    {
+            //        myEnemies.Add(SpawnEnemy());
+            //    }
+            //    if (counter % 20 == 0)
+            //    {
+            //        myMelons.Add(SpawnEnemy(true));
+            //    }
 
-                PlayerControls(ref newPlayer, ref playerProjectiles);
-                GameEngine.Clear();
-                GameEngine.DrawEnemies(myEnemies);
-                GameEngine.DrawEnemies(myMelons);
-                GameEngine.DrawProjectiles(enemyProjectiles);
-                GameEngine.DrawProjectiles(playerProjectiles);
-                GameEngine.DrawPlayer(newPlayer);
-                Thread.Sleep(30);
-                counter+=0.25;
+            //    CheckProjectileBounderies(ref enemyProjectiles);
+            //    CheckProjectileBounderies(ref playerProjectiles);
+            //    if (counter % .5 == 0)
+            //    {
+            //        MoveEnemy(ref myEnemies);
+            //        //MoveProjectile(ref enemyProjectiles);
+            //    }
+            //    if (counter % .25 == 0)
+            //    {
+            //        MoveEnemy(ref myMelons);
+            //        //MoveProjectile(ref enemyProjectiles);
+            //    }
+            //    if (counter % 0.50 == 0)
+            //    {
+            //        MoveProjectile(ref enemyProjectiles);
+            //        MoveProjectile(ref playerProjectiles);
+            //    }
 
-                if (counter % 10 == 0)
-                {
-                    Random random = new Random();
-                    int whichEnemy = random.Next(0, myEnemies.Count);
-                    enemyProjectiles.Add(myEnemies[whichEnemy].Shoot());
-                }
-            }
+            //    PlayerControls(ref newPlayer, ref playerProjectiles);
+            //    GameEngine.Clear();
+            //    GameEngine.DrawEnemies(myEnemies);
+            //    GameEngine.DrawEnemies(myMelons);
+            //    GameEngine.DrawProjectiles(enemyProjectiles);
+            //    GameEngine.DrawProjectiles(playerProjectiles);
+            //    GameEngine.DrawPlayer(newPlayer);
+            //    Thread.Sleep(30);
+            //    counter+=0.25;
+
+            //    if (counter % 10 == 0)
+            //    {
+            //        Random random = new Random();
+            //        int whichEnemy = random.Next(0, myEnemies.Count);
+            //        enemyProjectiles.Add(myEnemies[whichEnemy].Shoot());
+            //    }
+            //}
         }
         static Enemy SpawnEnemy(bool isMelon = false)
         {
@@ -87,7 +89,7 @@ namespace Spicy_Invaders
                         break;
                 }
             Enemy spawnedEnemy = new Enemy(GameSettings.ENEMY_START_POS.X, GameSettings.ENEMY_START_POS.Y + yPosition, randomType, Direction.Right);
-            spawnedEnemy.Velocity = new Vector((int)GameSettings.ENEMYSPEED,yVelocity);
+            spawnedEnemy.Velocity = new Vector((int)GameSettings.ENEMYVELOCITY,yVelocity);
             return spawnedEnemy;
             }
             else

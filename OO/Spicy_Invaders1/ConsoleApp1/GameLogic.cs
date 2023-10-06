@@ -8,10 +8,17 @@ namespace Spicy_Invaders
 {
     public class GameLogic
     {
-        public List<Enemy> Enemies { get; } = new List<Enemy>();
-        public List<Projectile> Projectiles { get; } = new List<Projectile>();
-        public Player PlayerShip { get; } = new Player();
 
+        public List<Enemy> Enemies { get; }
+        public List<Projectile> Projectiles { get; }
+        public Player PlayerShip { get; }
+
+        public GameLogic()
+        {
+            Enemies = new List<Enemy>();
+            Projectiles = new List<Projectile>();
+            PlayerShip = new Player(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
+        }
         public void SpawnEnemy(bool isMelon = false)
         {
             if (!isMelon)
@@ -23,7 +30,7 @@ namespace Spicy_Invaders
                 switch (randomType)
                 {
                     case EnemyType.Strawberry:
-                        yPosition = 1;
+                        yPosition = 0;
                         yVelocity = 5;
                         break;
                     case EnemyType.Banana:
@@ -36,7 +43,7 @@ namespace Spicy_Invaders
                         break;
                 }
                 Enemy spawnedEnemy = new Enemy(GameSettings.ENEMY_START_POS.X, GameSettings.ENEMY_START_POS.Y + yPosition, randomType, Direction.Right);
-                spawnedEnemy.Velocity = new Vector((int)GameSettings.ENEMYSPEED, yVelocity);
+                spawnedEnemy.Velocity = new Vector((int)GameSettings.ENEMYVELOCITY, yVelocity);
                 Enemies.Add(spawnedEnemy);
             }
             else
@@ -62,7 +69,7 @@ namespace Spicy_Invaders
                     Enemies[i].TravelDirection = Direction.Right;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
                 }
-                if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT + 1)
+                if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT )
                 {
                     Enemies.Remove(Enemies[i]);
                 }
@@ -105,9 +112,12 @@ namespace Spicy_Invaders
 
                         for (int j = 0; j < Enemies.Count; j++)
                         {
-                            if (Projectiles[i].Position.Y >= Enemies[i].Position.Y)
+                            switch (Enemies[i].enemyType)
                             {
-
+                                case EnemyType.Melon:
+                                    break;
+                                default:
+                                    break;
                             }
                         }
 
@@ -147,7 +157,7 @@ namespace Spicy_Invaders
             }
             return false;
         }
-        public void PlayerControls()
+        public void PlayerControls(bool shoot)
         {
             if (Console.KeyAvailable)
             {
