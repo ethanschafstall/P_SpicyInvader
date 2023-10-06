@@ -159,7 +159,7 @@ namespace Spicy_Invaders
                         Console.ResetColor();
                         break;
                     case Missile:
-                        switch (projectiles[i].CurrentDirection)
+                        switch (projectiles[i].TravelDirection)
                         {
                             case Direction.Up:
                                 currentMissileColors = _missileColorsUp;

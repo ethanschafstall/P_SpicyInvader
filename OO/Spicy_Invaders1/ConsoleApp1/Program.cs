@@ -103,14 +103,14 @@ namespace Spicy_Invaders
 
             for (int i = 0; i < myEnemies.Count; i++)
             {
-                if (myEnemies[i].Position.X + myEnemies[i].Velocity.X > GameSettings.GAMEBOARD_X_LIMIT && myEnemies[i].CurrentDirection == Direction.Right)
+                if (myEnemies[i].Position.X + myEnemies[i].Velocity.X > GameSettings.GAMEBOARD_X_LIMIT && myEnemies[i].TravelDirection == Direction.Right)
                 {
-                    myEnemies[i].CurrentDirection = Direction.Left;
+                    myEnemies[i].TravelDirection = Direction.Left;
                     myEnemies[i].Position.Y = myEnemies[i].Position.Y + myEnemies[i].Velocity.Y;
                 }
-                if (myEnemies[i].Position.X - myEnemies[i].Velocity.X <= 0 && myEnemies[i].CurrentDirection == Direction.Left)
+                if (myEnemies[i].Position.X - myEnemies[i].Velocity.X <= 0 && myEnemies[i].TravelDirection == Direction.Left)
                 {
-                    myEnemies[i].CurrentDirection = Direction.Right;
+                    myEnemies[i].TravelDirection = Direction.Right;
                     myEnemies[i].Position.Y = myEnemies[i].Position.Y + myEnemies[i].Velocity.Y;
                 }
                 if (myEnemies[i].Position.Y + myEnemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT+1)
@@ -130,11 +130,11 @@ namespace Spicy_Invaders
 
             for (int i = 0; i < myProjectiles.Count; i++)
             {
-                if (myProjectiles[i].Position.Y + myProjectiles[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT && myProjectiles[i].CurrentDirection == Direction.Down)
+                if (myProjectiles[i].Position.Y + myProjectiles[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT && myProjectiles[i].TravelDirection == Direction.Down)
                 {
                     myProjectiles.RemoveAt(i);
                 }
-                else if (myProjectiles[i].Position.Y - myProjectiles[i].Velocity.Y <= 0 && myProjectiles[i].CurrentDirection == Direction.Up)
+                else if (myProjectiles[i].Position.Y - myProjectiles[i].Velocity.Y <= 0 && myProjectiles[i].TravelDirection == Direction.Up)
                 {
                     myProjectiles.RemoveAt(i);
                 }
@@ -149,11 +149,11 @@ namespace Spicy_Invaders
         {
             for (int i = 0; i < myProjectiles.Count; i++)
             {
-                if (myProjectiles[i].Position.Y + myProjectiles[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT && myProjectiles[i].CurrentDirection == Direction.Down)
+                if (myProjectiles[i].Position.Y + myProjectiles[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT && myProjectiles[i].TravelDirection == Direction.Down)
                 {
                     myProjectiles.RemoveAt(i);
                 }
-                else if (myProjectiles[i].Position.Y - myProjectiles[i].Velocity.Y <= 0 && myProjectiles[i].CurrentDirection == Direction.Up)
+                else if (myProjectiles[i].Position.Y - myProjectiles[i].Velocity.Y <= 0 && myProjectiles[i].TravelDirection == Direction.Up)
                 {
                     myProjectiles.RemoveAt(i);
                 }

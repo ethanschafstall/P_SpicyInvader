@@ -7,17 +7,10 @@ using System.Threading.Tasks;
 namespace Spicy_Invaders
 {
 
-    public enum Direction
-    {
-        None,
-        Up,
-        Down,
-        Left,
-        Right,
-    }
+
     public class MovableEntity
     {
-        public Direction CurrentDirection { get; set; }
+        public Direction TravelDirection { get; set; }
 
         public Vector Position { get; set; }
 
@@ -28,7 +21,7 @@ namespace Spicy_Invaders
             // if parameter == none then default to global MoveDirection variable
             if (directionToGo == Direction.None)
             {
-                directionToGo = CurrentDirection;
+                directionToGo = TravelDirection;
             }
             switch (directionToGo)
             {
