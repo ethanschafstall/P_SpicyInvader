@@ -15,7 +15,7 @@ namespace Spicy_Invaders
         {
             Position = new Vector(x, y);
             Velocity = new Vector(1, 1);
-            weaponType = WeaponType.MissileLauncher;
+            weaponType = WeaponType.LaserGun;
             FaceDirection = Direction.Up;
         }  
     }
