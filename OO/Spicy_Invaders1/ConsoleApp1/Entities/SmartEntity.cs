@@ -49,13 +49,13 @@ namespace Spicy_Invaders
             switch (weaponType)
             {
                 case WeaponType.Gun:
-                    return new Bullet(ShootXPos, ShootYPos, this, FaceDirection);
+                    return new Bullet(ShootXPos, ShootYPos, FaceDirection);
                     break;
                 case WeaponType.MissileLauncher:
-                    return new Missile(ShootXPos, ShootYPos, this, FaceDirection);
+                    return new Missile(ShootXPos, ShootYPos, FaceDirection);
                     break;
                 case WeaponType.LaserGun:
-                    return new Laser(ShootXPos, ShootYPos, this, FaceDirection);
+                    return new Laser(ShootXPos, ShootYPos, FaceDirection);
                     break;
                 default:
                     throw new NotImplementedException("unknown weapon type");

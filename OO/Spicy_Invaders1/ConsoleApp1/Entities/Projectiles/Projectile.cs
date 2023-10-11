@@ -9,8 +9,6 @@ namespace Spicy_Invaders
     public class Projectile : MovableEntity
     {
         public int Damage { get; set; }
-        
-        public SmartEntity Shooter { get; set; }
 
         protected Projectile() { }
     }

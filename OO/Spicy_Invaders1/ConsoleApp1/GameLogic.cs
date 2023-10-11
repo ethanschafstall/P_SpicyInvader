@@ -69,7 +69,7 @@ namespace Spicy_Invaders
                     Enemies[i].TravelDirection = Direction.Right;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
                 }
-                if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT )
+                if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT)
                 {
                     Enemies.Remove(Enemies[i]);
                 }
@@ -101,35 +101,53 @@ namespace Spicy_Invaders
                 Projectiles[i].Move();
             }
         }
-        public void EnemyCollisionDetection()
+        public bool ProjectileCollisionDetection()
         {
-            if (Projectiles == null) return;
+            if (Projectiles == null) return false;
+
             for (int i = 0; i < Projectiles.Count; i++)
             {
-                switch (Projectiles[i].Shooter)
+                if (Projectiles[i].TravelDirection == Direction.Up)
                 {
-                    case Player:
-
-                        for (int j = 0; j < Enemies.Count; j++)
+                    for (int j = 0; j < Enemies.Count; j++)
+                    {
+                        if (!(Enemies[j].enemyType == EnemyType.Melon))
                         {
-                            switch (Enemies[i].enemyType)
+                            if (Projectiles[i].Position.Y <= Enemies[j].Position.Y + 3 &&
+                                Projectiles[i].Position.X >= Enemies[j].Position.X &&
+                                Projectiles[i].Position.X <= Enemies[j].Position.X + 2)
                             {
-                                case EnemyType.Melon:
-                                    break;
-                                default:
-                                    break;
+                                Enemies.RemoveAt(j);
+                                Projectiles.RemoveAt(i);
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            if (Projectiles[i].Position.Y <= Enemies[j].Position.Y + 3 &&
+                                Projectiles[i].Position.X >= Enemies[j].Position.X &&
+                                Projectiles[i].Position.X <= Enemies[j].Position.X + 4)
+                            {
+                                Enemies.RemoveAt(j);
+                                Projectiles.RemoveAt(i);
+                                break;
                             }
                         }
-
-                        break;
-                    case Enemy:
-                        if (Projectiles[i].Position.Y >= Enemies[i].Position.Y)
-                        {
-
-                        }
-                        break;
+                    }
                 }
+                else if (Projectiles[i].TravelDirection == Direction.Down)
+                {
+                    if (Projectiles[i].Position.Y <= PlayerShip.Position.Y &&
+                        Projectiles[i].Position.X >= PlayerShip.Position.X &&
+                        Projectiles[i].Position.X <= PlayerShip.Position.X + 2)
+                    {
+                        return true;
+                    }
+                }
+
             }
+            return false;
         }
         public void CheckProjectileBounderies()
         {

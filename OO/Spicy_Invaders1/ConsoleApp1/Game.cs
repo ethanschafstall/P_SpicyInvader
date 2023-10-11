@@ -16,22 +16,25 @@ namespace Spicy_Invaders
 
         public bool Run()
         {
+            int enemySpawn = (int)GameSettings.ENEMYSPAWNRATE;
+            int enemyMove = (int)GameSettings.ENEMYMOVERATE;
+            int projectileMove = (int)GameSettings.PROJECTILEMOVERATE;
             int counter = 0;
 
             while (true)
             {
-                if ((counter == 0 || counter % (int)GameSettings.ENEMYSPAWNRATE == 0) && GameLogic.Enemies.Count < 10)
+                if ((counter == 0 || counter % enemySpawn == 0) && GameLogic.Enemies.Count < 20)
                 {
                     GameLogic.SpawnEnemy();
                 }
-                if (counter % (int)GameSettings.ENEMYMOVERATE == 0)
+                if (counter % enemyMove == 0)
                 {
                     GameLogic.MoveEnemy();
 
                 }
 
 
-                if (counter % (int)GameSettings.PROJECTILEMOVERATE == 0)
+                if (counter % projectileMove == 0)
                 {
                     GameLogic.MoveProjectile();
                 }
@@ -39,6 +42,7 @@ namespace Spicy_Invaders
                 GameEngine.Clear();
 
                 GameLogic.CheckProjectileBounderies();
+                GameLogic.ProjectileCollisionDetection();
                 GameEngine.DrawProjectiles(GameLogic.Projectiles);
                 GameEngine.DrawPlayer(GameLogic.PlayerShip);
                 GameEngine.DrawEnemies(GameLogic.Enemies);
