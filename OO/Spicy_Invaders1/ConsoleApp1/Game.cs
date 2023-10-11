@@ -38,7 +38,7 @@ namespace Spicy_Invaders
                 {
                     GameLogic.MoveProjectile();
                 }
-                GameLogic.PlayerControls(false);
+                GameLogic.PlayerControls();
                 GameEngine.Clear();
 
                 GameLogic.CheckProjectileBounderies();
