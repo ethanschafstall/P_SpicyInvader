@@ -8,11 +8,6 @@ namespace Spicy_Invaders
 {
     public class GameSettings
     {
-        public enum EnemySpeed
-        {
-            normal = 1,
-            fast = 2,
-        }
 
         public const int GAMEBOARD_X_START = 0;
 
@@ -28,9 +23,9 @@ namespace Spicy_Invaders
 
         public const int ENEMYVELOCITY = 1;
 
-        public const int ENEMYMOVERATE = ENEMYVELOCITY*2;
+        public const int ENEMYMOVERATE = ENEMYVELOCITY*2+1;
 
-        public const int ENEMYSPAWNRATE = ENEMYMOVERATE*5;
+        public const int ENEMYSPAWNRATE = ENEMYMOVERATE*6;
 
         public const int PROJECTILEMOVERATE = 3;
 
@@ -39,7 +34,6 @@ namespace Spicy_Invaders
         public static Vector ENEMY_START_POS = new Vector(1, 1);
 
         public static Vector PLAYER_START_POS = new Vector((GAMEBOARD_X_LIMIT - GAMEBOARD_X_START) / 2, GAMEBOARD_Y_LIMIT - 3);
-
         public static Language Language { get; set; }
 
 
