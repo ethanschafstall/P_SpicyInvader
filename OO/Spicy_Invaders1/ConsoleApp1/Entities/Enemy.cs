@@ -22,6 +22,15 @@ namespace Spicy_Invaders
             weaponType = WeaponType.Gun;
         }
 
+        public override void Hit(Projectile projectile) 
+        { 
+            this.HealthPoints -= projectile.Damage;
+            if (HealthPoints <= 0)
+            {
+                IsAlive = false;
+            }
+        }
+
         //public Drop DropUpgrade()
         //{
         //    //return new Drop(1,1);

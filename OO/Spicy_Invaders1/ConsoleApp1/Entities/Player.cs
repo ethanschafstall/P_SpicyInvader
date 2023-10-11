@@ -17,6 +17,10 @@ namespace Spicy_Invaders
             Velocity = new Vector(1, 1);
             weaponType = WeaponType.LaserGun;
             FaceDirection = Direction.Up;
-        }  
+        }
+        public override void Hit(Projectile projectile) 
+        { 
+            IsAlive = false;
+        }
     }
 }

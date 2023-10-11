@@ -12,12 +12,6 @@ namespace Spicy_Invaders
     /// </summary>
     public class SmartEntity : MovableEntity
     {
-        public enum WeaponType
-        { 
-            Gun,
-            LaserGun,
-            MissileLauncher
-        }
 
         public WeaponType weaponType { get; set; }
 
@@ -36,8 +30,6 @@ namespace Spicy_Invaders
         public int XPos { get; set; }
 
         public bool IsAlive { get; set; }
-
-
         protected SmartEntity()
         {
         }
@@ -61,6 +53,11 @@ namespace Spicy_Invaders
                     throw new NotImplementedException("unknown weapon type");
                     break;
             }
+        }
+
+        public virtual void Hit(Projectile projectile) 
+        { 
+
         }
     }
 }

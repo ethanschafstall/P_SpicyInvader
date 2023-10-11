@@ -125,9 +125,9 @@ namespace Spicy_Invaders
         /// Method responsible for checking projectile positions and comparing them with the enemy/player positions to see if there is a collision. 
         /// </summary>
         /// <returns>Returns true if the player was hit, otherwise false</returns>
-        public bool ProjectileCollisionDetection()
+        public void ProjectileCollisionDetection()
         {
-            if (Projectiles == null) return false;
+            if (Projectiles == null) return;
 
             for (int i = 0; i < Projectiles.Count; i++)
             {
@@ -156,7 +156,7 @@ namespace Spicy_Invaders
                                 Projectiles[i].Position.X <= Enemies[j].Position.X + 3)
                                 // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
                             {
-                                Enemies.RemoveAt(j);
+                                Enemies[j].Hit(Projectiles[i]);
                                 Projectiles.RemoveAt(i);
                                 break;
                             }
@@ -169,7 +169,7 @@ namespace Spicy_Invaders
                                 Projectiles[i].Position.X <= Enemies[j].Position.X + 4)
                             // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
                             {
-                                Enemies.RemoveAt(j);
+                                Enemies[j].Hit(Projectiles[i]);
                                 Projectiles.RemoveAt(i);
                                 break;
                             }
@@ -182,12 +182,12 @@ namespace Spicy_Invaders
                         Projectiles[i].Position.X >= PlayerShip.Position.X &&
                         Projectiles[i].Position.X <= PlayerShip.Position.X + 2)
                     {
-                        return true;
+                        PlayerShip.Hit(Projectiles[i]);
                     }
                 }
 
             }
-            return false;
+            return;
         }
 
         /// <summary>
