@@ -10,7 +10,6 @@ namespace Spicy_Invaders
     {
         GameEngine GameLogic { get; set; }
 
-        public string Pseudo { get; set; }
         public Game()
         {
             GameLogic = new GameEngine();
