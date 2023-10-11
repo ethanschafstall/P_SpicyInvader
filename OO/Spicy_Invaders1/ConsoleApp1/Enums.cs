@@ -13,6 +13,12 @@ namespace Spicy_Invaders
         Grape = 3,
         Melon = 4
     }
+    public enum WeaponType
+    {
+        Gun,
+        LaserGun,
+        MissileLauncher
+    }
     public enum DropType
     {
         weaponUpgrade,
