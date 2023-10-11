@@ -8,10 +8,12 @@ namespace Spicy_Invaders
 {
     public class Game
     {
-        GameLogic GameLogic { get; set; }
+        GameEngine GameLogic { get; set; }
+
+        public string Pseudo { get; set; }
         public Game()
         {
-            GameLogic = new GameLogic();
+            GameLogic = new GameEngine();
         }
 
         public bool Run()
@@ -39,13 +41,13 @@ namespace Spicy_Invaders
                     GameLogic.MoveProjectile();
                 }
                 GameLogic.PlayerControls();
-                GameEngine.Clear();
+                View.Clear();
 
                 GameLogic.CheckProjectileBounderies();
                 GameLogic.ProjectileCollisionDetection();
-                GameEngine.DrawProjectiles(GameLogic.Projectiles);
-                GameEngine.DrawPlayer(GameLogic.PlayerShip);
-                GameEngine.DrawEnemies(GameLogic.Enemies);
+                View.DrawProjectiles(GameLogic.Projectiles);
+                View.DrawPlayer(GameLogic.PlayerShip);
+                View.DrawEnemies(GameLogic.Enemies);
 
 
                 counter++;

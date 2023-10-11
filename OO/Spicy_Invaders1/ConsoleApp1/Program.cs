@@ -8,13 +8,13 @@ namespace Spicy_Invaders
             List<Projectile> enemyProjectiles = new List<Projectile>();
             List<Projectile> playerProjectiles = new List<Projectile>();
 
-            Player newPlayer = new Player(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
+            PlayerShip newPlayer = new PlayerShip(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
 
             List<Enemy> myEnemies = new List<Enemy>();
             List<Enemy> myMelons = new List<Enemy>();
 
             double counter = 0;
-            GameEngine.Init();
+            View.Init();
             new Game().Run();
 
 
@@ -161,7 +161,7 @@ namespace Spicy_Invaders
                 }
             }
         }
-        static void PlayerControls(ref Player player, ref List<Projectile> playerProjectiles)
+        static void PlayerControls(ref PlayerShip player, ref List<Projectile> playerProjectiles)
         {
             if (Console.KeyAvailable)
             {
