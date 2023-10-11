@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
+    /// <summary>
+    /// GameLogic class the handles all game behaviours/calculations.
+    /// </summary>
     public class GameLogic
     {
 
@@ -19,6 +22,11 @@ namespace Spicy_Invaders
             Projectiles = new List<Projectile>();
             PlayerShip = new Player(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
         }
+
+        /// <summary>
+        /// Method responsible for creating new enemy objects and adding them to the Enemies list. 
+        /// </summary>
+        /// <param name="isMelon">bool if is melon enemy is to be spawned</param>
         public void SpawnEnemy(bool isMelon = false)
         {
             if (!isMelon)
@@ -53,9 +61,14 @@ namespace Spicy_Invaders
                 Enemies.Add(spawnedMelon);
             }
         }
-        public void MoveEnemy()
+
+        /// <summary>
+        /// Method responsible for moving enemy objects from Enemies list, and removing them from said list, based on enemy move direction and gameboard limits.
+        /// </summary>
+        /// <returns> Returns true if an enemy has reached bottom gameboard limit, otherwise returns false</returns>
+        public bool MoveEnemy()
         {
-            if (Enemies == null) return;
+            if (Enemies == null) return false;
 
             for (int i = 0; i < Enemies.Count; i++)
             {
@@ -64,7 +77,7 @@ namespace Spicy_Invaders
                     Enemies[i].TravelDirection = Direction.Left;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
                 }
-                if (Enemies[i].Position.X - Enemies[i].Velocity.X <= 0 && Enemies[i].TravelDirection == Direction.Left)
+                if (Enemies[i].Position.X - Enemies[i].Velocity.X <= GameSettings.GAMEBOARD_X_START && Enemies[i].TravelDirection == Direction.Left)
                 {
                     Enemies[i].TravelDirection = Direction.Right;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
@@ -72,6 +85,7 @@ namespace Spicy_Invaders
                 if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT)
                 {
                     Enemies.Remove(Enemies[i]);
+                    return true;
                 }
             }
 
@@ -79,7 +93,12 @@ namespace Spicy_Invaders
             {
                 Enemies[i].Move();
             }
+                return false;
         }
+
+        /// <summary>
+        /// Method responsible for moving projectile objects from Projectiles list, and removing them from said list. Based on projectile move direction and gameboard limits
+        /// </summary>
         public void MoveProjectile()
         {
             if (Projectiles == null) return;
@@ -101,6 +120,11 @@ namespace Spicy_Invaders
                 Projectiles[i].Move();
             }
         }
+
+        /// <summary>
+        /// Method responsible for checking projectile positions and comparing them with the enemy/player positions to see if there is a collision. 
+        /// </summary>
+        /// <returns>Returns true if the player was hit, otherwise false</returns>
         public bool ProjectileCollisionDetection()
         {
             if (Projectiles == null) return false;
@@ -111,11 +135,26 @@ namespace Spicy_Invaders
                 {
                     for (int j = 0; j < Enemies.Count; j++)
                     {
-                        if (!(Enemies[j].enemyType == EnemyType.Melon))
+                        bool yAxisCondition = false;
+
+                        if (Projectiles[i] is Laser)
+                        // Because the laser travels at a faster speed than other projectile types the standard condition
+                        // doesn't work as intended so there is a special condition only for the Laser type.
                         {
-                            if (Projectiles[i].Position.Y <= Enemies[j].Position.Y + 3 &&
+                            yAxisCondition = Projectiles[i].Position.Y <= Enemies[j].Position.Y+3 || Projectiles[i].Position.Y - Projectiles[i].Velocity.Y <= Enemies[j].Position.Y+3;
+                        }
+                        else
+                        {
+                            yAxisCondition = Projectiles[i].Position.Y <= Enemies[j].Position.Y+3;
+                        }
+
+                        if (!(Enemies[j].enemyType == EnemyType.Melon))
+                        // if the enemy being shot at is not a melon, as melons are bigger so need a different
+                        {
+                            if (yAxisCondition &&
                                 Projectiles[i].Position.X >= Enemies[j].Position.X &&
-                                Projectiles[i].Position.X <= Enemies[j].Position.X + 2)
+                                Projectiles[i].Position.X <= Enemies[j].Position.X + 3)
+                                // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
                             {
                                 Enemies.RemoveAt(j);
                                 Projectiles.RemoveAt(i);
@@ -125,9 +164,10 @@ namespace Spicy_Invaders
                         }
                         else
                         {
-                            if (Projectiles[i].Position.Y <= Enemies[j].Position.Y + 3 &&
+                            if (yAxisCondition &&
                                 Projectiles[i].Position.X >= Enemies[j].Position.X &&
                                 Projectiles[i].Position.X <= Enemies[j].Position.X + 4)
+                            // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
                             {
                                 Enemies.RemoveAt(j);
                                 Projectiles.RemoveAt(i);
@@ -138,7 +178,7 @@ namespace Spicy_Invaders
                 }
                 else if (Projectiles[i].TravelDirection == Direction.Down)
                 {
-                    if (Projectiles[i].Position.Y <= PlayerShip.Position.Y &&
+                    if (Projectiles[i].Position.Y < PlayerShip.Position.Y &&
                         Projectiles[i].Position.X >= PlayerShip.Position.X &&
                         Projectiles[i].Position.X <= PlayerShip.Position.X + 2)
                     {
@@ -149,6 +189,10 @@ namespace Spicy_Invaders
             }
             return false;
         }
+
+        /// <summary>
+        /// Method responsible for checking projectile positions and comparing them with the gameboard limits, removing projectiles if they reached a certain boundery
+        /// </summary>
         public void CheckProjectileBounderies()
         {
             for (int i = 0; i < Projectiles.Count; i++)
@@ -163,6 +207,12 @@ namespace Spicy_Invaders
                 }
             }
         }
+
+        /// <summary>
+        /// Method responsible for making sure the player is within gameboard bounderies
+        /// </summary>
+        /// <param name="direction">The direction the player is trying to move in</param>
+        /// <returns>Returns true player has reached a limit, otherwise false</returns>
         public bool CheckPlayerBounderies(Direction direction)
         {
             if (direction == Direction.Left && !(PlayerShip.Position.X > GameSettings.GAMEBOARD_X_START))
@@ -175,7 +225,11 @@ namespace Spicy_Invaders
             }
             return false;
         }
-        public void PlayerControls(bool shoot)
+
+        /// <summary>
+        ///  Method responsible translating key inputs into player actions.
+        /// </summary>
+        public void PlayerControls()
         {
             if (Console.KeyAvailable)
             {
