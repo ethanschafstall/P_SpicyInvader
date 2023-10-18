@@ -39,6 +39,9 @@ namespace Spicy_Invaders
         private static List<string> _missileSpriteUp;
 
         private static List<ConsoleColor> _missileColorsUp;
+
+        private static List<ConsoleColor> _HitColors;
+
         static View()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -68,6 +71,9 @@ namespace Spicy_Invaders
             _missileColorsDown = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkGray, ConsoleColor.Red};
 
             _missileColorsUp = new List<ConsoleColor> { ConsoleColor.Red, ConsoleColor.DarkGray, ConsoleColor.DarkYellow };
+
+
+            _HitColors = new List<ConsoleColor> { ConsoleColor.DarkRed, ConsoleColor.DarkRed };
         }
 
         public static void Init()
@@ -87,15 +93,11 @@ namespace Spicy_Invaders
             if (enemies == null) return;
             for (int i = 0; i < enemies.Count; i++)
             {
-                switch (enemies[i].enemyType)
+                switch (enemies[i].Type)
                 {
                     case EnemyType.Strawberry:
-                        currentEnemySprite = _strawberrySprite;
-                        currentEnemyColors = _strawberryColors;
-                        break;
-                    case EnemyType.Melon:
-                        currentEnemySprite = _melonSprite;
-                        currentEnemyColors = _melonColors;
+                    currentEnemySprite = _strawberrySprite;
+                    currentEnemyColors = _strawberryColors;
                         break;
                     case EnemyType.Banana:
                         currentEnemySprite = _bananaSprite;
@@ -105,6 +107,15 @@ namespace Spicy_Invaders
                         currentEnemySprite = _grapeSprite;
                         currentEnemyColors = _grapeColors;
                         break;
+                    case EnemyType.Melon:
+                        currentEnemySprite = _melonSprite;
+                        currentEnemyColors = _melonColors;
+                        break;
+
+                }
+                if (enemies[i].ShowHitAnimation)
+                {
+                    currentEnemyColors = _HitColors;
                 }
                 for (int j = 0; j < currentEnemySprite.Count; j++)
                 {
@@ -119,6 +130,7 @@ namespace Spicy_Invaders
                     }
                     Console.SetCursorPosition(enemies[i].Position.X, enemies[i].Position.Y + j);
                     Console.Write(currentEnemySprite[j]);
+                    enemies[i].ShowHitAnimation = false;
                 }
 
             }
@@ -126,19 +138,31 @@ namespace Spicy_Invaders
         }
         public static void DrawPlayer(PlayerShip myPlayer)
         {
+            List<ConsoleColor> currentColors = new List<ConsoleColor> { };
+
+            if (myPlayer.ShowHitAnimation)
+            {
+                currentColors = _HitColors;
+            }
+            else
+            {
+                currentColors = _pepperColors;
+            }
+
             for (int i = 0; i < _pepperSprite.Count; i++)
             {
                 switch (i)
                 {
                     default:
-                        Console.ForegroundColor = _pepperColors[0];
+                        Console.ForegroundColor = currentColors[0];
                         break;
                     case 2:
-                        Console.ForegroundColor = _pepperColors[1];
+                        Console.ForegroundColor = currentColors[1];
                         break;
                 }
                 Console.SetCursorPosition(myPlayer.Position.X, myPlayer.Position.Y + i);
                 Console.Write(_pepperSprite[i]);
+                myPlayer.ShowHitAnimation = false;
             }
             Console.ResetColor();
         }
@@ -178,7 +202,6 @@ namespace Spicy_Invaders
                             Console.ForegroundColor = currentMissileColors[j];
                             Console.Write(currentMissileSprite[j]);
                             Console.ResetColor();
-
                         }
                         break;
                 }
