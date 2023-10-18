@@ -13,14 +13,21 @@ namespace Spicy_Invaders
         }
         public PlayerShip(int x, int y) 
         {
-            Position = new Vector(x, y);
-            Velocity = new Vector(1, 1);
-            weaponType = WeaponType.Gun;
-            FaceDirection = Direction.Up;
+            this.Position = new Vector(x, y);
+            this.Velocity = new Vector(1, 1);
+            this.Weapon = WeaponType.Gun;
+            this.FaceDirection = Direction.Up;
+            this.HealthPoints = 3;
+            this.EntityWidth = 2;
         }
         public override void Hit(Projectile projectile) 
-        { 
-            IsAlive = false;
+        {
+            this.ShowHitAnimation = true;
+            this.HealthPoints -= 1;
+            if (HealthPoints <= 0)
+            {
+                this.IsAlive = false;
+            }
         }
     }
 }

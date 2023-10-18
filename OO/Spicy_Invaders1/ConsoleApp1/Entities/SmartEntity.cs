@@ -13,7 +13,7 @@ namespace Spicy_Invaders
     public class SmartEntity : MovableEntity
     {
 
-        public WeaponType weaponType { get; set; }
+        public WeaponType Weapon { get; set; }
 
         public int HealthPoints { get; set; }
 
@@ -27,9 +27,12 @@ namespace Spicy_Invaders
 
         public Vector ShootBox { get; set; }
 
-        public int XPos { get; set; }
+        public int EntityWidth { get; set; }
 
         public bool IsAlive { get; set; }
+
+        public bool ShowHitAnimation { get; set; } = false;
+
         protected SmartEntity()
         {
         }
@@ -38,7 +41,7 @@ namespace Spicy_Invaders
             ShootXPos = Position.X;
             ShootYPos = Position.Y;
 
-            switch (weaponType)
+            switch (Weapon)
             {
                 case WeaponType.Gun:
                     return new Bullet(ShootXPos, ShootYPos, FaceDirection);

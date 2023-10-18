@@ -47,7 +47,7 @@ namespace Spicy_Invaders
                 View.DrawProjectiles(GameLogic.Projectiles);
                 View.DrawPlayer(GameLogic.PlayerShip);
                 View.DrawEnemies(GameLogic.Enemies);
-
+                GameLogic.RemoveDeadEnemey();
 
                 counter++;
                 Thread.Sleep(1);
