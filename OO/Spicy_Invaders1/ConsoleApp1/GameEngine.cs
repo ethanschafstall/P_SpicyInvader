@@ -15,6 +15,7 @@ namespace Spicy_Invaders
         public List<Enemy> Enemies { get; }
         public List<Projectile> Projectiles { get; }
         public PlayerShip PlayerShip { get; }
+        public int PlayerPoints { get; set; }
 
         public GameEngine()
         {
@@ -137,7 +138,7 @@ namespace Spicy_Invaders
                     {
                         bool yAxisCondition = false;
 
-                        if (Projectiles[i] is    Laser)
+                        if (Projectiles[i] is Laser)
                         // Because the laser travels at a faster speed than other projectile types the standard condition
                         // doesn't work as intended so there is a special condition only for the Laser type.
                         {
@@ -148,7 +149,17 @@ namespace Spicy_Invaders
                             yAxisCondition = Projectiles[i].Position.Y <= Enemies[j].Position.Y+3;
                         }
 
-                        if (!(Enemies[j].enemyType == EnemyType.Melon))
+                        if (yAxisCondition &&
+                            Projectiles[i].Position.X >= Enemies[j].Position.X &&
+                            Projectiles[i].Position.X <= Enemies[j].Position.X + Enemies[j].EntityWidth)
+                        // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
+                        {
+                            Enemies[j].Hit(Projectiles[i]);
+                            Projectiles.RemoveAt(i);
+                            break;
+                        }
+                        /* OLD METHOD
+                        if (!(Enemies[j].Type == EnemyType.Melon))
                         // if the enemy being shot at is not a melon, as melons are bigger so need a different
                         {
                             if (yAxisCondition &&
@@ -174,13 +185,14 @@ namespace Spicy_Invaders
                                 break;
                             }
                         }
+                        */
                     }
                 }
                 else if (Projectiles[i].TravelDirection == Direction.Down)
                 {
                     if (Projectiles[i].Position.Y < PlayerShip.Position.Y &&
                         Projectiles[i].Position.X >= PlayerShip.Position.X &&
-                        Projectiles[i].Position.X <= PlayerShip.Position.X + 2)
+                        Projectiles[i].Position.X <= PlayerShip.Position.X + PlayerShip.EntityWidth)
                     {
                         PlayerShip.Hit(Projectiles[i]);
                     }
@@ -256,6 +268,17 @@ namespace Spicy_Invaders
                 if (!CheckPlayerBounderies(direction))
                 {
                     PlayerShip.Move(direction);
+                }
+            }
+        }
+        public void RemoveDeadEnemey()
+        {
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                if (Enemies[i].IsAlive == false)
+                {
+                    PlayerPoints += Enemies[i].Points;
+                    Enemies.RemoveAt(i);
                 }
             }
         }
