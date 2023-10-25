@@ -15,7 +15,7 @@ namespace Spicy_Invaders
         {
             this.Position = new Vector(x, y);
             this.Velocity = new Vector(1, 1);
-            this.Weapon = WeaponType.Gun;
+            this.Weapon = WeaponType.MissileLauncher;
             this.FaceDirection = Direction.Up;
             this.HealthPoints = 3;
             this.EntityWidth = 2;
@@ -27,6 +27,7 @@ namespace Spicy_Invaders
             if (HealthPoints <= 0)
             {
                 this.IsAlive = false;
+                
             }
         }
     }

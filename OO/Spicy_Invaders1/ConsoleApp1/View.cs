@@ -42,6 +42,18 @@ namespace Spicy_Invaders
 
         private static List<ConsoleColor> _HitColors;
 
+        private static List<string> _explosionSprite1;
+
+        private static List<string> _explosionSprite2;
+
+        private static List<string> _explosionSprite3;
+
+        private static List<ConsoleColor> _explosionColors1;
+
+        private static List<ConsoleColor> _explosionColors2;
+
+        private static List<ConsoleColor> _explosionColors3;
+
         static View()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -72,8 +84,19 @@ namespace Spicy_Invaders
 
             _missileColorsUp = new List<ConsoleColor> { ConsoleColor.Red, ConsoleColor.DarkGray, ConsoleColor.DarkYellow };
 
-
             _HitColors = new List<ConsoleColor> { ConsoleColor.DarkRed, ConsoleColor.DarkRed };
+
+            _explosionSprite1 = new List<string> { "  ", " * ", "  " };
+
+            _explosionSprite2 = new List<string> { "' ' '", "- * -", ", . ," };
+
+            _explosionSprite3 = new List<string> { "\\  |  /", ">  #  <", "/  |  \\" };
+
+            _explosionColors1 = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkRed };
+
+            _explosionColors2 = new List<ConsoleColor> { ConsoleColor.DarkRed, ConsoleColor.DarkYellow };
+
+            _explosionColors3 = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkRed };
         }
 
         public static void Init()
@@ -117,6 +140,24 @@ namespace Spicy_Invaders
                 {
                     currentEnemyColors = _HitColors;
                 }
+                if (enemies[i].IsAlive == false)
+                {
+                    switch (enemies[i].ExplosionLevel)
+                    {
+                        case 1:
+                            currentEnemySprite = _explosionSprite1;
+                            currentEnemyColors = _explosionColors1;
+                            break;
+                        case 2:
+                            currentEnemySprite = _explosionSprite2;
+                            currentEnemyColors = _explosionColors2;
+                            break;
+                        case 3:
+                            currentEnemySprite = _explosionSprite3;
+                            currentEnemyColors = _explosionColors3;
+                            break;
+                    }
+                }
                 for (int j = 0; j < currentEnemySprite.Count; j++)
                 {
                     switch (j)
@@ -130,7 +171,6 @@ namespace Spicy_Invaders
                     }
                     Console.SetCursorPosition(enemies[i].Position.X, enemies[i].Position.Y + j);
                     Console.Write(currentEnemySprite[j]);
-                    enemies[i].ShowHitAnimation = false;
                 }
 
             }
@@ -139,13 +179,12 @@ namespace Spicy_Invaders
         public static void DrawPlayer(PlayerShip myPlayer)
         {
             List<ConsoleColor> currentColors = new List<ConsoleColor> { };
-
             if (myPlayer.ShowHitAnimation)
             {
                 currentColors = _HitColors;
             }
             else
-            {
+                        {
                 currentColors = _pepperColors;
             }
 
@@ -162,7 +201,6 @@ namespace Spicy_Invaders
                 }
                 Console.SetCursorPosition(myPlayer.Position.X, myPlayer.Position.Y + i);
                 Console.Write(_pepperSprite[i]);
-                myPlayer.ShowHitAnimation = false;
             }
             Console.ResetColor();
         }
@@ -208,8 +246,41 @@ namespace Spicy_Invaders
             }
         }
         
-        public static void Explode(SmartEntity entityToExplode) 
+        public static void ExplodePlayer(int frame, PlayerShip myPlayer)
         {
+            List<string> currentSprite = new List<string> { };
+            List<ConsoleColor> currentColors = new List<ConsoleColor> { };
+
+            switch (frame)
+            {
+                case 1:
+                    currentSprite = _explosionSprite1;
+                    currentColors = _explosionColors1;
+                    break;
+                case 2:
+                    currentSprite = _explosionSprite2;
+                    currentColors = _explosionColors2;
+                    break;
+                case 3:
+                    currentSprite = _explosionSprite3;
+                    currentColors = _explosionColors3;
+                    break;
+            }
+            for (int i = 0; i < currentSprite.Count; i++)
+            {
+                switch (i)
+                {
+                    default:
+                        Console.ForegroundColor = currentColors[0];
+                        break;
+                    case 2:
+                        Console.ForegroundColor = currentColors[1];
+                        break;
+                }
+                Console.SetCursorPosition(myPlayer.Position.X, myPlayer.Position.Y + i);
+                Console.Write(currentSprite[i]);
+            }
+            Console.ResetColor();
         }
     }
 }
