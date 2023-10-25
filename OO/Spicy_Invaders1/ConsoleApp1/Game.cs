@@ -15,29 +15,31 @@ namespace Spicy_Invaders
             GameLogic = new GameEngine();
         }
 
-        public bool Run()
+        public void Run()
         {
             int enemySpawn = (int)GameSettings.ENEMYSPAWNRATE;
             int enemyMove = (int)GameSettings.ENEMYMOVERATE;
             int projectileMove = (int)GameSettings.PROJECTILEMOVERATE;
             int counter = 0;
-
-            while (true)
+            bool gameOver = false;
+            string wonOrLost = "";
+            while (!gameOver)
             {
-                if ((counter == 0 || counter % enemySpawn == 0) && GameLogic.Enemies.Count < 20)
+                if ((counter == 0 || counter % enemySpawn == 0) && GameLogic.Enemies.Count < 21)
                 {
                     GameLogic.SpawnEnemy();
                 }
                 if (counter % enemyMove == 0)
                 {
-                    GameLogic.MoveEnemy();
+                    wonOrLost = GameLogic.MoveEnemy();
+                    GameLogic.ResetHitAnimations();
 
                 }
 
 
                 if (counter % projectileMove == 0)
                 {
-                    GameLogic.MoveProjectile();
+                   GameLogic.MoveProjectile();
                 }
                 GameLogic.PlayerControls();
                 View.Clear();
@@ -47,12 +49,30 @@ namespace Spicy_Invaders
                 View.DrawProjectiles(GameLogic.Projectiles);
                 View.DrawPlayer(GameLogic.PlayerShip);
                 View.DrawEnemies(GameLogic.Enemies);
+                GameLogic.UpdateExplosionLevel();
                 GameLogic.RemoveDeadEnemey();
 
                 counter++;
                 Thread.Sleep(1);
+                if (wonOrLost != "")
+                {
+                    gameOver = true;
+                }
             }
-            return true;
+            for (int i = 1; i < 4; i++)
+            {
+                View.ExplodePlayer(i, GameLogic.PlayerShip);
+                Thread.Sleep(750);
+            }
+            switch (wonOrLost) 
+            {
+                case "won":
+                    Console.WriteLine("you won!");
+                    break;
+                case "lost":
+                    break;
+            }
+
         }
     }
 }

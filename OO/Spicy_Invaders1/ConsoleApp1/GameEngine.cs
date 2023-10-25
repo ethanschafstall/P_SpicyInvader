@@ -67,34 +67,38 @@ namespace Spicy_Invaders
         /// Method responsible for moving enemy objects from Enemies list, and removing them from said list, based on enemy move direction and gameboard limits.
         /// </summary>
         /// <returns> Returns true if an enemy has reached bottom gameboard limit, otherwise returns false</returns>
-        public bool MoveEnemy()
+        public string MoveEnemy()
         {
-            if (Enemies == null) return false;
+            if (Enemies == null) return "";
 
             for (int i = 0; i < Enemies.Count; i++)
             {
-                if (Enemies[i].Position.X + Enemies[i].Velocity.X > GameSettings.GAMEBOARD_X_LIMIT && Enemies[i].TravelDirection == Direction.Right)
+                if (Enemies[i].IsAlive && Enemies[i].Position.X + Enemies[i].Velocity.X > GameSettings.GAMEBOARD_X_LIMIT && Enemies[i].TravelDirection == Direction.Right)
                 {
                     Enemies[i].TravelDirection = Direction.Left;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
                 }
-                if (Enemies[i].Position.X - Enemies[i].Velocity.X <= GameSettings.GAMEBOARD_X_START && Enemies[i].TravelDirection == Direction.Left)
+                if (Enemies[i].IsAlive && Enemies[i].IsAlive && Enemies[i].Position.X - Enemies[i].Velocity.X <= GameSettings.GAMEBOARD_X_START && Enemies[i].TravelDirection == Direction.Left)
                 {
                     Enemies[i].TravelDirection = Direction.Right;
                     Enemies[i].Position.Y = Enemies[i].Position.Y + Enemies[i].Velocity.Y;
                 }
                 if (Enemies[i].Position.Y + Enemies[i].Velocity.Y > GameSettings.GAMEBOARD_Y_LIMIT)
                 {
-                    Enemies.Remove(Enemies[i]);
-                    return true;
+                    return "lost";
                 }
             }
 
             for (int i = 0; i < Enemies.Count; i++)
             {
+                if (Enemies[i].IsAlive)
+                {
                 Enemies[i].Move();
+
+                }
+
             }
-                return false;
+            return "";
         }
 
         /// <summary>
@@ -271,14 +275,41 @@ namespace Spicy_Invaders
                 }
             }
         }
+        public void ResetHitAnimations() 
+        {
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                Enemies[i].ShowHitAnimation = false;
+            }
+            PlayerShip.ShowHitAnimation = false;
+        }
         public void RemoveDeadEnemey()
         {
             for (int i = 0; i < Enemies.Count; i++)
             {
-                if (Enemies[i].IsAlive == false)
+                if (Enemies[i].IsAlive == false && Enemies[i].ExplosionLevel == 4)
                 {
                     PlayerPoints += Enemies[i].Points;
                     Enemies.RemoveAt(i);
+                }
+            }
+        }
+
+        public void UpdateExplosionLevel()
+        {
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                switch (Enemies[i].ExplosionLevel)
+                {
+                    case 1:
+                        Enemies[i].ExplosionLevel = 2;
+                        break;
+                    case 2:
+                        Enemies[i].ExplosionLevel = 3;
+                        break;
+                    case 3:
+                        Enemies[i].ExplosionLevel = 4;
+                        break;
                 }
             }
         }

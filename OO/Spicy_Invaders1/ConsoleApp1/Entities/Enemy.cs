@@ -10,6 +10,7 @@ namespace Spicy_Invaders
     {
         public EnemyType Type { get; }
 
+        public int ExplosionLevel { get; set; } = 0;
         public bool CanFire { get; set; }
 
         public int Points { get; set; }
@@ -22,18 +23,18 @@ namespace Spicy_Invaders
             this.Position = new Vector(x, y);
             this.Velocity = new Vector();
             this.Weapon = WeaponType.Gun;
-            switch (this.Type)
+            switch (type)
             {
                 case EnemyType.Strawberry:
                     this.HealthPoints = 50;
                     this.EntityWidth = 3;
                     break;
                 case EnemyType.Banana:
-                    this.HealthPoints = 100;
+                    this.HealthPoints = 75;
                     this.EntityWidth = 3;
                     break;
                 case EnemyType.Grape:
-                    this.HealthPoints = 150;
+                    this.HealthPoints = 105;
                     this.EntityWidth = 3;
                     break;
                 case EnemyType.Melon:
@@ -41,7 +42,7 @@ namespace Spicy_Invaders
                     this.EntityWidth = 4;
                     break;
             }
-            this.HealthPoints = this.Points;
+            this.Points = this.HealthPoints;
         }
 
         public override void Hit(Projectile projectile) 
@@ -51,6 +52,7 @@ namespace Spicy_Invaders
             if (HealthPoints <= 0)
             {
                 this.IsAlive = false;
+                this.ExplosionLevel = 1;
             }
         }
 

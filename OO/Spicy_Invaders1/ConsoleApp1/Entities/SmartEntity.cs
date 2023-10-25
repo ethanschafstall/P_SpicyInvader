@@ -29,7 +29,7 @@ namespace Spicy_Invaders
 
         public int EntityWidth { get; set; }
 
-        public bool IsAlive { get; set; }
+        public bool IsAlive { get; set; } = true;
 
         public bool ShowHitAnimation { get; set; } = false;
 
