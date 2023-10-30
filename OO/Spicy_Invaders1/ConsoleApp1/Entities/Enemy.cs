@@ -28,21 +28,24 @@ namespace Spicy_Invaders
                 case EnemyType.Strawberry:
                     this.HealthPoints = 50;
                     this.EntityWidth = 3;
+                    this.Points = 10;
                     break;
                 case EnemyType.Banana:
                     this.HealthPoints = 75;
                     this.EntityWidth = 3;
+                    this.Points = 20;
                     break;
                 case EnemyType.Grape:
                     this.HealthPoints = 105;
                     this.EntityWidth = 3;
+                    this.Points = 40;
                     break;
                 case EnemyType.Melon:
                     this.HealthPoints = 200;
                     this.EntityWidth = 4;
+                    this.Points = 5;
                     break;
             }
-            this.Points = this.HealthPoints;
         }
 
         public override void Hit(Projectile projectile) 

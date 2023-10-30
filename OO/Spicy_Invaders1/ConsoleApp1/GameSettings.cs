@@ -31,7 +31,7 @@ namespace Spicy_Invaders
 
         public const int PROJECTILESPAWNRATE = PROJECTILEMOVERATE*2;
 
-        public static Vector ENEMY_START_POS = new Vector(7, 7);
+        public static Vector ENEMY_START_POS = new Vector(7, 11);
 
         public static Vector PLAYER_START_POS = new Vector((GAMEBOARD_X_LIMIT - GAMEBOARD_X_START) / 2, GAMEBOARD_Y_LIMIT - 3);
         public static Language Language { get; set; }

@@ -9,11 +9,12 @@ namespace Spicy_Invaders
     public class Player
     {
         public int Score { get; set; }
-        public string Alias { get;}
+        public string Alias { get; set; }
 
         public Player(string alias) 
         {
             this.Alias = alias;
         }
+        public Player(){}
     }
 }
