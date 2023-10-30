@@ -9,20 +9,28 @@ namespace Spicy_Invaders
     public class Game
     {
         GameEngine GameLogic { get; set; }
-
-        public Game()
+        Player player { get; set; }
+        public Game(string name)
         {
+            player = new Player(name);
+            GameLogic = new GameEngine();
+        }
+        public Game() 
+        {
+            player = new Player();
             GameLogic = new GameEngine();
         }
 
         public void Run()
         {
-            int enemySpawn = (int)GameSettings.ENEMYSPAWNRATE;
-            int enemyMove = (int)GameSettings.ENEMYMOVERATE;
-            int projectileMove = (int)GameSettings.PROJECTILEMOVERATE;
+            int enemySpawn = GameSettings.ENEMYSPAWNRATE;
+            int enemyMove = GameSettings.ENEMYMOVERATE;
+            int projectileMove = GameSettings.PROJECTILEMOVERATE;
+            int titleXPos = (GameSettings.WINDOW_WIDTH - 70)/ 2;
             int counter = 0;
             bool gameOver = false;
             string wonOrLost = "";
+            ConsoleColor colorTheme = ConsoleColor.White;
             while (!gameOver)
             {
                 if ((counter == 0 || counter % enemySpawn == 0) && GameLogic.Enemies.Count < 21)
@@ -43,14 +51,17 @@ namespace Spicy_Invaders
                 }
                 GameLogic.PlayerControls();
                 View.Clear();
-
+                View.DrawWindow(GameSettings.WINDOW_WIDTH-2, GameSettings.WINDOW_HEIGHT-2, colorTheme);
+                View.DrawScore(player.Score, player.Alias, GameSettings.WINDOW_WIDTH, 2);
+                View.DrawInfo(2 , 2);
+                View.DrawGameTitle(titleXPos, 2);
                 GameLogic.CheckProjectileBounderies();
                 GameLogic.ProjectileCollisionDetection();
                 View.DrawProjectiles(GameLogic.Projectiles);
                 View.DrawPlayer(GameLogic.PlayerShip);
                 View.DrawEnemies(GameLogic.Enemies);
                 GameLogic.UpdateExplosionLevel();
-                GameLogic.RemoveDeadEnemey();
+                player.Score += GameLogic.RemoveDeadEnemey();
 
                 counter++;
                 Thread.Sleep(1);
@@ -61,7 +72,7 @@ namespace Spicy_Invaders
             }
             for (int i = 1; i < 4; i++)
             {
-                View.ExplodePlayer(i, GameLogic.PlayerShip);
+                View.DrawExplosion(i, GameLogic.PlayerShip);
                 Thread.Sleep(750);
             }
             switch (wonOrLost) 
@@ -72,7 +83,6 @@ namespace Spicy_Invaders
                 case "lost":
                     break;
             }
-
         }
     }
 }

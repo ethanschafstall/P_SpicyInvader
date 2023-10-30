@@ -15,8 +15,6 @@ namespace Spicy_Invaders
         public List<Enemy> Enemies { get; }
         public List<Projectile> Projectiles { get; }
         public PlayerShip PlayerShip { get; }
-        public int PlayerPoints { get; set; }
-
         public GameEngine()
         {
             Enemies = new List<Enemy>();
@@ -283,16 +281,18 @@ namespace Spicy_Invaders
             }
             PlayerShip.ShowHitAnimation = false;
         }
-        public void RemoveDeadEnemey()
+        public int RemoveDeadEnemey()
         {
+            int points = 0;
             for (int i = 0; i < Enemies.Count; i++)
             {
                 if (Enemies[i].IsAlive == false && Enemies[i].ExplosionLevel == 4)
                 {
-                    PlayerPoints += Enemies[i].Points;
+                    points += Enemies[i].Points;
                     Enemies.RemoveAt(i);
                 }
             }
+            return points;
         }
 
         public void UpdateExplosionLevel()
