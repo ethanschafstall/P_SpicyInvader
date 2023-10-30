@@ -42,18 +42,13 @@ namespace Spicy_Invaders
 
         private static List<ConsoleColor> _HitColors;
 
-        private static List<string> _explosionSprite1;
+        private static string[] _explosionSprite1;
 
-        private static List<string> _explosionSprite2;
+        private static string[] _explosionSprite2;
 
-        private static List<string> _explosionSprite3;
+        private static string[] _explosionSprite3;
 
-        private static List<ConsoleColor> _explosionColors1;
-
-        private static List<ConsoleColor> _explosionColors2;
-
-        private static List<ConsoleColor> _explosionColors3;
-
+        private static List<ConsoleColor> _explosionColors;
         static View()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -86,17 +81,14 @@ namespace Spicy_Invaders
 
             _HitColors = new List<ConsoleColor> { ConsoleColor.DarkRed, ConsoleColor.DarkRed };
 
-            _explosionSprite1 = new List<string> { "  ", " * ", "  " };
+            _explosionSprite1 = new string[] { "     ", "  *  ", "     " };
 
-            _explosionSprite2 = new List<string> { "' ' '", "- * -", ", . ," };
+            _explosionSprite2 = new string[] { " ,., "," - - ", " `¨´ " };
 
-            _explosionSprite3 = new List<string> { "\\  |  /", ">  #  <", "/  |  \\" };
+            _explosionSprite3 = new string[] { "` ¨ ´", "-   -", ", . ,"};
 
-            _explosionColors1 = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkRed };
+            _explosionColors = new List<ConsoleColor> { ConsoleColor.Yellow, ConsoleColor.DarkYellow, ConsoleColor.Red };
 
-            _explosionColors2 = new List<ConsoleColor> { ConsoleColor.DarkRed, ConsoleColor.DarkYellow };
-
-            _explosionColors3 = new List<ConsoleColor> { ConsoleColor.DarkYellow, ConsoleColor.DarkRed };
         }
 
         public static void Init()
@@ -142,21 +134,8 @@ namespace Spicy_Invaders
                 }
                 if (enemies[i].IsAlive == false)
                 {
-                    switch (enemies[i].ExplosionLevel)
-                    {
-                        case 1:
-                            currentEnemySprite = _explosionSprite1;
-                            currentEnemyColors = _explosionColors1;
-                            break;
-                        case 2:
-                            currentEnemySprite = _explosionSprite2;
-                            currentEnemyColors = _explosionColors2;
-                            break;
-                        case 3:
-                            currentEnemySprite = _explosionSprite3;
-                            currentEnemyColors = _explosionColors3;
-                            break;
-                    }
+                    DrawExplosion(enemies[i].ExplosionLevel, enemies[i]);
+                    break;
                 }
                 for (int j = 0; j < currentEnemySprite.Count; j++)
                 {
@@ -245,42 +224,125 @@ namespace Spicy_Invaders
                 }
             }
         }
-        
-        public static void ExplodePlayer(int frame, PlayerShip myPlayer)
+        public static void DrawExplosion(int frame, MovableEntity entity)
         {
-            List<string> currentSprite = new List<string> { };
-            List<ConsoleColor> currentColors = new List<ConsoleColor> { };
+            ConsoleColor color = _explosionColors[0];
+            int xPos = entity.Position.X;
+            int yPos = entity.Position.Y;
 
             switch (frame)
             {
                 case 1:
-                    currentSprite = _explosionSprite1;
-                    currentColors = _explosionColors1;
+                    
+                    Console.ForegroundColor = _explosionColors[0];
+                    for (int i = 0; i < _explosionSprite1.Length; i++)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_explosionSprite1[i]);
+                        yPos++;
+                    }
                     break;
                 case 2:
-                    currentSprite = _explosionSprite2;
-                    currentColors = _explosionColors2;
+                    for (int i = 0; i < _explosionSprite2.Length; i++)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        for (int j = 0; j < _explosionSprite2[i].Length; j++)
+                        {
+                            if ((i == 0 || i == _explosionSprite2.Length - 1) && (j == 1 || j == _explosionSprite2.Length))
+                            {
+                                color = _explosionColors[1];
+                            }
+                            else
+                            {
+                                color = _explosionColors[2];
+                            }
+                            Console.ForegroundColor = color;
+                            Console.Write(_explosionSprite2[i][j]);
+                         
+                        }
+                        yPos++;
+                    }
                     break;
                 case 3:
-                    currentSprite = _explosionSprite3;
-                    currentColors = _explosionColors3;
+
+                    for (int i = 0; i < _explosionSprite3.Length; i++)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        for (int j = 0; j < _explosionSprite3[i].Length; j++)
+                        {
+                            if ((i == 0 || i == _explosionSprite3.Length - 1) && (j == 0 || j == _explosionSprite3[i].Length - 1))
+                            {
+                                color = _explosionColors[2];
+                            }
+                            else
+                            {
+                                color = _explosionColors[1];
+                            }
+                            Console.ForegroundColor = color;
+                            Console.Write(_explosionSprite3[i][j]);
+                        }
+                        yPos++;
+
+                    }
+
+                    // Reset the foreground color to the default
+                    Console.ResetColor();
                     break;
             }
-            for (int i = 0; i < currentSprite.Count; i++)
+        }
+        public static void DrawWindow(int width, int height, ConsoleColor color) 
+        {
+            Console.ForegroundColor = color;
+
+            Console.SetCursorPosition(0, 0);
+            Console.Write(@"╔" + new string('═', width) + "╗");
+            for (int i = 0; i < height; i++)
             {
-                switch (i)
-                {
-                    default:
-                        Console.ForegroundColor = currentColors[0];
-                        break;
-                    case 2:
-                        Console.ForegroundColor = currentColors[1];
-                        break;
-                }
-                Console.SetCursorPosition(myPlayer.Position.X, myPlayer.Position.Y + i);
-                Console.Write(currentSprite[i]);
+                Console.Write(@"║" + new string(' ', width) + "║");
             }
+            Console.Write(@"╚" + new string('═', width) + "╝");
             Console.ResetColor();
         }
+        public static void DrawScore(int score, string name, int xpos, int ypos) 
+        {
+            string text = "";
+            if (name is null)
+            {
+                text = $"Player1 : {score}";
+            }
+            else
+            {
+                text = $"{name} : {score}";
+            }
+            Console.SetCursorPosition(xpos-text.Length-3, ypos);
+            Console.Write(text);
+
+        }
+        public static void DrawInfo(int xpos, int ypos, int level = 0)
+        {
+            Console.SetCursorPosition(xpos, ypos);
+            Console.Write($"Level : {level}");
+            Console.SetCursorPosition(xpos, ypos + 2);
+            Console.Write("Options(O)");
+
+        }
+        public static void DrawGameTitle(int xpos, int ypos)
+        {
+            List<string> logo = new List<string> {  "   _____       _            _____                     _               ",
+                                                    "  / ____|     (_)          |_   _|                   | |              " ,
+                                                    " | (___  _ __  _  ___ _   _  | |  _ ____   ____ _  __| | ___ _ __ ___ " ,
+                                                    "  \\___ \\| '_ \\| |/ __| | | | | | | '_ \\ \\ / / _` |/ _` |/ _ \\ '__/ __|" ,
+                                                    "  ____) | |_) | | (__| |_| |_| |_| | | \\ V / (_| | (_| |  __/ |  \\__ \\",
+                                                    " |_____/| .__/|_|\\___|\\__, |_____|_| |_|\\_/ \\__,_|\\__,_|\\___|_|  |___/",
+                                                    "        | |            __/ |                                          ",
+                                                    "        |_|           |___/                                           " };
+            for (int i = 0; i < logo.Count; i++)
+            {
+                Console.SetCursorPosition(xpos, ypos + i);
+                Console.Write(logo[i]);
+
+            }
+        }
+
     }
 }
