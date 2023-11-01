@@ -20,6 +20,7 @@ namespace Spicy_Invaders
             Enemies = new List<Enemy>();
             Projectiles = new List<Projectile>();
             PlayerShip = new PlayerShip(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
+
         }
 
         /// <summary>
@@ -160,34 +161,6 @@ namespace Spicy_Invaders
                             Projectiles.RemoveAt(i);
                             break;
                         }
-                        /* OLD METHOD
-                        if (!(Enemies[j].Type == EnemyType.Melon))
-                        // if the enemy being shot at is not a melon, as melons are bigger so need a different
-                        {
-                            if (yAxisCondition &&
-                                Projectiles[i].Position.X >= Enemies[j].Position.X &&
-                                Projectiles[i].Position.X <= Enemies[j].Position.X + 3)
-                                // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
-                            {
-                                Enemies[j].Hit(Projectiles[i]);
-                                Projectiles.RemoveAt(i);
-                                break;
-                            }
-
-                        }
-                        else
-                        {
-                            if (yAxisCondition &&
-                                Projectiles[i].Position.X >= Enemies[j].Position.X &&
-                                Projectiles[i].Position.X <= Enemies[j].Position.X + 4)
-                            // if the projectile x and y postions intersect with the enemy x and y postions then remove both from the list
-                            {
-                                Enemies[j].Hit(Projectiles[i]);
-                                Projectiles.RemoveAt(i);
-                                break;
-                            }
-                        }
-                        */
                     }
                 }
                 else if (Projectiles[i].TravelDirection == Direction.Down)
