@@ -250,9 +250,9 @@ namespace Spicy_Invaders
         {
             for (int i = 0; i < Enemies.Count; i++)
             {
-                Enemies[i].ShowHitAnimation = false;
+                Enemies[i].IsHit = false;
             }
-            PlayerShip.ShowHitAnimation = false;
+            PlayerShip.IsHit = false;
         }
         public int RemoveDeadEnemey()
         {

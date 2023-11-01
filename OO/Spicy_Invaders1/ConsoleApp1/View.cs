@@ -8,50 +8,112 @@ using System.Threading.Tasks;
 namespace Spicy_Invaders
 {
     /// <summary>
-    /// GameEngine Handles all visual aspects of the game. 
+    /// View Class which Handles all visual aspects of the game. 
     /// </summary>
     public class View
     {
-
+        /// <summary>
+        /// string list for strawberry enemy sprite.
+        /// </summary>
         private static List<string> _strawberrySprite;
 
+        /// <summary>
+        /// consolecolor list for strawberry enemy sprite colors.
+        /// </summary>
         private static List<ConsoleColor> _strawberryColors;
 
+        /// <summary>
+        /// string list for banana enemy sprite.
+        /// </summary>
         private static List<string> _bananaSprite;
 
+        /// <summary>
+        /// consolecolor list for banana enemy sprite colors.
+        /// </summary>
         private static List<ConsoleColor> _bananaColors;
 
+        /// <summary>
+        /// string list for grape enemy sprite.
+        /// </summary>
         private static List<string> _grapeSprite;
 
+        /// <summary>
+        /// consolecolor list for grape enemy sprite colors.
+        /// </summary>
         private static List<ConsoleColor> _grapeColors;
 
+        /// <summary>
+        /// string list for melon enemy sprite.
+        /// </summary>
         private static List<string> _melonSprite;
 
+        /// <summary>
+        /// consolecolor list for melon enemy sprite colors.
+        /// </summary>
         private static List<ConsoleColor> _melonColors;
 
+        /// <summary>
+        /// string list for pepper(player) enemy sprite.
+        /// </summary>
         private static List<string> _pepperSprite;
 
+        /// <summary>
+        /// consolecolor list for pepper(the player) enemy sprite colors.
+        /// </summary>
         private static List<ConsoleColor> _pepperColors;
 
+        /// <summary>
+        /// string list for missile projectile sprite moving down.
+        /// </summary>
         private static List<string> _missileSpriteDown;
 
+        /// <summary>
+        /// consolecolor list for missile projectile sprite moving down.
+        /// </summary>
         private static List<ConsoleColor> _missileColorsDown;
 
+        /// <summary>
+        /// string list for missile projectile sprite moving up.
+        /// </summary>
         private static List<string> _missileSpriteUp;
 
+        /// <summary>
+        /// consolecolor list for missile projectile sprite moving up.
+        /// </summary>
         private static List<ConsoleColor> _missileColorsUp;
 
+        /// <summary>
+        /// consolecolor list for entites that have been hit.
+        /// </summary>
         private static List<ConsoleColor> _HitColors;
 
+        /// <summary>
+        /// string list for entites on explosion level 1 sprite.
+        /// </summary>
         private static string[] _explosionSprite1;
 
+        /// <summary>
+        /// string list for entites on explosion level 2 sprite.
+        /// </summary>
         private static string[] _explosionSprite2;
 
+        /// <summary>
+        /// string list for entites on explosion level 3 sprite.
+        /// </summary>
         private static string[] _explosionSprite3;
 
+        /// <summary>
+        /// consolecolor list for explosion level sprites.
+        /// </summary>
         private static List<ConsoleColor> _explosionColors;
-
+        /// <summary>
+        /// string list for the ascii art logo.
+        /// </summary>
         private static List<string> logo;
+
+        /// <summary>
+        /// static constructor, which initializes all class variables.
+        /// </summary>
         static View()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -102,6 +164,10 @@ namespace Spicy_Invaders
                                                     "        |_|           |___/                                           " };
         }
 
+        /// <summary>
+        /// Method Init for hiding the cursor and setting window/buffer sizes.
+        /// </summary>
+        /// <param name="game">bool game para if the window is for the game or for the program(menus screens)</param>
         public static void Init(bool game)
         {
             Console.CursorVisible = false;
@@ -114,10 +180,18 @@ namespace Spicy_Invaders
             Console.SetWindowSize(GameSettings.MENU_WINDOW_WIDTH, GameSettings.MENU_WINDOW_HEIGHT);
             Console.SetBufferSize(GameSettings.MENU_WINDOW_WIDTH, GameSettings.MENU_WINDOW_HEIGHT);
         }
+        /// <summary>
+        /// Clear method for clearing the screen.
+        /// </summary>
         public static void Clear()
         {
             Console.Clear();
         }
+        /// <summary>
+        /// Method responsible for for drawing/displaying enemies from a list, based on the each enemy's type.
+        /// The method also changes the color for hit enemies, and displays exploded enemies (although its a different method which handles the explode writing)
+        /// </summary>
+        /// <param name="enemies">the list of enemies to be displayed</param>
         public static void DrawEnemies(List<Enemy> enemies)
         {
             List<string> currentEnemySprite = new List<string> { };
@@ -145,7 +219,7 @@ namespace Spicy_Invaders
                         break;
 
                 }
-                if (enemies[i].ShowHitAnimation)
+                if (enemies[i].IsHit)
                 {
                     currentEnemyColors = _HitColors;
                 }
@@ -172,10 +246,14 @@ namespace Spicy_Invaders
             }
             Console.ResetColor();
         }
+        /// <summary>
+        /// Method responsible for for drawing/displaying the player ship (pepper), also handles hit colors.
+        /// </summary>
+        /// <param name="myPlayer">The player which is to to be displayed</param>
         public static void DrawPlayer(PlayerShip myPlayer)
         {
             List<ConsoleColor> currentColors = new List<ConsoleColor> { };
-            if (myPlayer.ShowHitAnimation)
+            if (myPlayer.IsHit)
             {
                 currentColors = _HitColors;
             }
@@ -200,6 +278,11 @@ namespace Spicy_Invaders
             }
             Console.ResetColor();
         }
+
+        /// <summary>
+        /// Method responsible for drawing/displaying all projectiles (both player and enemy), based on projectile type and travel direction (for certain projectiles)
+        /// </summary>
+        /// <param name="projectiles"></param>
         public static void DrawProjectiles(List<Projectile> projectiles)
         {
             List<string> currentMissileSprite = new List<string> { };
@@ -241,6 +324,11 @@ namespace Spicy_Invaders
                 }
             }
         }
+        /// <summary>
+        /// Method responsible for drawing/displaying the explosion based on the entity's current explosion frame(level).
+        /// </summary>
+        /// <param name="frame"></param>
+        /// <param name="entity"></param>
         public static void DrawExplosion(int frame, MovableEntity entity)
         {
             ConsoleColor color = _explosionColors[0];
@@ -302,11 +390,16 @@ namespace Spicy_Invaders
 
                     }
 
-                    // Reset the foreground color to the default
                     Console.ResetColor();
                     break;
             }
         }
+        /// <summary>
+        /// Method responsible for drawing/displaying the the window frame for the game.
+        /// </summary>
+        /// <param name="width">The frame's width.</param>
+        /// <param name="height">The frame's width.</param>
+        /// <param name="color">The frame's color.</param>
         public static void DrawWindow(int width, int height, ConsoleColor color) 
         {
             Console.ForegroundColor = color;
@@ -320,6 +413,15 @@ namespace Spicy_Invaders
             Console.Write(@"╚" + new string('═', width) + "╝");
             Console.ResetColor();
         }
+        /// <summary>
+        /// Method responsible for drawing/display game info during gameplay.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="score"></param>
+        /// <param name="name"></param>
+        /// <param name="xpos"></param>
+        /// <param name="ypos"></param>
+        /// <param name="level"></param>
         public static void DrawGameInfo(List<string> text, int score, string name, int xpos, int ypos, int level = 0) 
         {
             string nameAndScore = "";

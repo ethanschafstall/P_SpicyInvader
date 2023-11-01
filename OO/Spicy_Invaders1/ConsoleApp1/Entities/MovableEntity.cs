@@ -7,15 +7,35 @@ using System.Threading.Tasks;
 namespace Spicy_Invaders
 {
 
-
+    /// <summary>
+    /// MoveableEntity class, which is any object in the game which moves.
+    /// </summary>
     public class MovableEntity
     {
+        /// <summary>
+        /// The direction in which the entity is moving.
+        /// </summary>
         public Direction TravelDirection { get; set; }
 
+        /// <summary>
+        /// The entity's current position
+        /// </summary>
         public Vector Position { get; set; }
 
+        /// <summary>
+        /// the speed by which the entity moves.
+        /// </summary>
         public Vector Velocity { get; set; } 
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         protected MovableEntity() { }
+
+        /// <summary>
+        /// Move Method which updates the entity's position based on it's move speed (velocity), it's current positon, and travel direction.
+        /// </summary>
+        /// <param name="directionToGo">Direction param if the enetity to move it in a different direction than it's current travel direction</param>
         public void Move(Direction directionToGo = Direction.None)
         {
             // if parameter == none then default to global MoveDirection variable

@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Spicy_Invaders
 {
+    /// <summary>
+    /// PlayerShip Classes which inherits from SmartEntity
+    /// </summary>
     public class PlayerShip : SmartEntity
     {
-        public PlayerShip() 
-        {
-        }
+        /// <summary>
+        /// Constructor, x/y are it's starting positions.
+        /// </summary>
+        /// <param name="x">x position</param>
+        /// <param name="y">y position</param>
         public PlayerShip(int x, int y) 
         {
             this.Position = new Vector(x, y);
@@ -19,9 +24,13 @@ namespace Spicy_Invaders
             this.HealthPoints = 3;
             this.EntityWidth = 2;
         }
+        /// <summary>
+        /// override Hit method, if the playership is hit than IsHit becomes true, healthPoints are lowered by 1. player is dead if healthpoints is zero.
+        /// </summary>
+        /// <param name="projectile"></param>
         public override void Hit(Projectile projectile) 
         {
-            this.ShowHitAnimation = true;
+            this.IsHit = true;
             this.HealthPoints -= 1;
             if (HealthPoints <= 0)
             {
