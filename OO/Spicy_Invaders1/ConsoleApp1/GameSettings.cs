@@ -8,7 +8,16 @@ namespace Spicy_Invaders
 {
     public class GameSettings
     {
+        public const int MENU_OPTIONS_VERTICAL_PADDING = 1;
 
+        public const int MENU_OPTIONS_HORIZONTAL_PADDING = 10;
+
+        public const int MENU_PROMPT_VERTICAL_PADDING = 3;
+
+        public const int MENU_X_POS = 20;
+
+        public const int MENU_Y_POS = 1;
+        
         public const int GAMEBOARD_X_START = 7;
 
         public const int GAMEBOARD_Y_START = 7;
@@ -20,6 +29,10 @@ namespace Spicy_Invaders
         public const int WINDOW_HEIGHT = 44;
 
         public const int WINDOW_WIDTH = 110;
+
+        public const int MENU_WINDOW_HEIGHT = 50;
+
+        public const int MENU_WINDOW_WIDTH = 110;
 
         public const int ENEMYVELOCITY = 1;
 
