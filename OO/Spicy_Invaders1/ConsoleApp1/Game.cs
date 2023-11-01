@@ -8,17 +8,23 @@ namespace Spicy_Invaders
 {
     public class Game
     {
-        GameEngine GameLogic { get; set; }
-        Player player { get; set; }
-        public Game(string name)
+        private GameEngine GameLogic { get; set; }
+        private Player player { get; set; }
+
+        private ILanguage language { get; set; }
+        public Game(string name, ILanguage language, WeaponType weapon)
         {
             player = new Player(name);
             GameLogic = new GameEngine();
+            GameLogic.PlayerShip.Weapon = weapon;
+            this.language = language;
         }
-        public Game() 
+        public Game(ILanguage language, WeaponType weapon) 
         {
             player = new Player();
             GameLogic = new GameEngine();
+            this.language = language;
+            GameLogic.PlayerShip.Weapon = weapon;
         }
 
         public void Run()
@@ -52,8 +58,7 @@ namespace Spicy_Invaders
                 GameLogic.PlayerControls();
                 View.Clear();
                 View.DrawWindow(GameSettings.WINDOW_WIDTH-2, GameSettings.WINDOW_HEIGHT-2, colorTheme);
-                View.DrawScore(player.Score, player.Alias, GameSettings.WINDOW_WIDTH, 2);
-                View.DrawInfo(2 , 2);
+                View.DrawGameInfo(language.GameplayText() ,player.Score, player.Alias, GameSettings.WINDOW_WIDTH, 2);
                 View.DrawGameTitle(titleXPos, 2);
                 GameLogic.CheckProjectileBounderies();
                 GameLogic.ProjectileCollisionDetection();
