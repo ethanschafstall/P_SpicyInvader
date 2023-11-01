@@ -12,6 +12,7 @@ namespace Spicy_Invaders
     /// </summary>
     public class View
     {
+
         private static List<string> _strawberrySprite;
 
         private static List<ConsoleColor> _strawberryColors;
@@ -49,6 +50,8 @@ namespace Spicy_Invaders
         private static string[] _explosionSprite3;
 
         private static List<ConsoleColor> _explosionColors;
+
+        private static List<string> logo;
         static View()
         {
             _strawberrySprite = new List<string> { " w ", "\\ /" };
@@ -89,13 +92,27 @@ namespace Spicy_Invaders
 
             _explosionColors = new List<ConsoleColor> { ConsoleColor.Yellow, ConsoleColor.DarkYellow, ConsoleColor.Red };
 
+            logo = new List<string> {  "   _____       _            _____                     _               ",
+                                                    "  / ____|     (_)          |_   _|                   | |              " ,
+                                                    " | (___  _ __  _  ___ _   _  | |  _ ____   ____ _  __| | ___ _ __ ___ " ,
+                                                    "  \\___ \\| '_ \\| |/ __| | | | | | | '_ \\ \\ / / _` |/ _` |/ _ \\ '__/ __|" ,
+                                                    "  ____) | |_) | | (__| |_| |_| |_| | | \\ V / (_| | (_| |  __/ |  \\__ \\",
+                                                    " |_____/| .__/|_|\\___|\\__, |_____|_| |_|\\_/ \\__,_|\\__,_|\\___|_|  |___/",
+                                                    "        | |            __/ |                                          ",
+                                                    "        |_|           |___/                                           " };
         }
 
-        public static void Init()
+        public static void Init(bool game)
         {
             Console.CursorVisible = false;
-            Console.SetWindowSize(GameSettings.WINDOW_WIDTH, GameSettings.WINDOW_HEIGHT);
-            Console.SetBufferSize(GameSettings.WINDOW_WIDTH,GameSettings.WINDOW_HEIGHT);
+            if (game)
+            {
+                Console.SetWindowSize(GameSettings.WINDOW_WIDTH, GameSettings.WINDOW_HEIGHT);
+                Console.SetBufferSize(GameSettings.WINDOW_WIDTH,GameSettings.WINDOW_HEIGHT);
+                return;
+            }
+            Console.SetWindowSize(GameSettings.MENU_WINDOW_WIDTH, GameSettings.MENU_WINDOW_HEIGHT);
+            Console.SetBufferSize(GameSettings.MENU_WINDOW_WIDTH, GameSettings.MENU_WINDOW_HEIGHT);
         }
         public static void Clear()
         {
@@ -303,39 +320,32 @@ namespace Spicy_Invaders
             Console.Write(@"╚" + new string('═', width) + "╝");
             Console.ResetColor();
         }
-        public static void DrawScore(int score, string name, int xpos, int ypos) 
+        public static void DrawGameInfo(List<string> text, int score, string name, int xpos, int ypos, int level = 0) 
         {
-            string text = "";
+            string nameAndScore = "";
+            string levelText = $"{text[0]} : {level}";
+            string optionsText = $"{text[1]}(O)";
+
+            Console.SetCursorPosition(2, ypos);
+
+            Console.Write(levelText);
+            Console.SetCursorPosition(2, ypos + 2);
+            Console.Write(optionsText);
+
             if (name is null)
             {
-                text = $"Player1 : {score}";
+                nameAndScore = $"{text[2]} : {score}";
             }
             else
             {
-                text = $"{name} : {score}";
+                nameAndScore = $"{name} : {score}";
             }
-            Console.SetCursorPosition(xpos-text.Length-3, ypos);
-            Console.Write(text);
-
-        }
-        public static void DrawInfo(int xpos, int ypos, int level = 0)
-        {
-            Console.SetCursorPosition(xpos, ypos);
-            Console.Write($"Level : {level}");
-            Console.SetCursorPosition(xpos, ypos + 2);
-            Console.Write("Options(O)");
+            Console.SetCursorPosition(xpos- nameAndScore.Length-3, ypos);
+            Console.Write(nameAndScore);
 
         }
         public static void DrawGameTitle(int xpos, int ypos)
         {
-            List<string> logo = new List<string> {  "   _____       _            _____                     _               ",
-                                                    "  / ____|     (_)          |_   _|                   | |              " ,
-                                                    " | (___  _ __  _  ___ _   _  | |  _ ____   ____ _  __| | ___ _ __ ___ " ,
-                                                    "  \\___ \\| '_ \\| |/ __| | | | | | | '_ \\ \\ / / _` |/ _` |/ _ \\ '__/ __|" ,
-                                                    "  ____) | |_) | | (__| |_| |_| |_| | | \\ V / (_| | (_| |  __/ |  \\__ \\",
-                                                    " |_____/| .__/|_|\\___|\\__, |_____|_| |_|\\_/ \\__,_|\\__,_|\\___|_|  |___/",
-                                                    "        | |            __/ |                                          ",
-                                                    "        |_|           |___/                                           " };
             for (int i = 0; i < logo.Count; i++)
             {
                 Console.SetCursorPosition(xpos, ypos + i);
