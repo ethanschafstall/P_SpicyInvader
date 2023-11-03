@@ -40,9 +40,9 @@ namespace ConsoleMenu
                 {
                     if (!(options[i].Text[j] is null))
                     {
-                    Console.SetCursorPosition(xPos, yPos);
-                    Console.Write(new String(' ', options[i].HorizontalPadding) + options[i].Text[j]);
-                    yPos++;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(new String(' ', options[i].HorizontalPadding) + options[i].Text[j]);
+                        yPos++;
                     }
                 }
                 yPos += options[i].VerticalPadding;
