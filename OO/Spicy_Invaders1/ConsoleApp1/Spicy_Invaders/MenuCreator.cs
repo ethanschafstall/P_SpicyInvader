@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleMenu;
-using Localization;
+using Language;
 
 
 namespace Spicy_Invaders

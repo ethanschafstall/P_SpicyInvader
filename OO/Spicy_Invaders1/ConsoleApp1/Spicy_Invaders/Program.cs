@@ -1,6 +1,6 @@
-﻿using DB_Connection;
+﻿using Data;
 using ConsoleMenu;
-using Localization;
+using Language;
 using Entity;
 
 namespace Spicy_Invaders
@@ -23,7 +23,6 @@ namespace Spicy_Invaders
             ConsoleColor color = ConsoleColor.Red;
             List<ConsoleKey> controls = new List<ConsoleKey>() { ConsoleKey.LeftArrow, ConsoleKey.RightArrow };
             WeaponType weapon = WeaponType.Gun;
-
             List<Menu> menuList = CreateMenuList(language, color);
 
             bool runGame = false;
@@ -58,12 +57,14 @@ namespace Spicy_Invaders
                             currentMenu = 1;
                             break;
                         case 2:
-                            if (Data.Init())
+                            if (Data.Data.Init())
                             {
                                 while (!Console.KeyAvailable)
                                 {
-                                    Data.GetPlayerScores(2, 30, 20, true);
+                                    List<string> dbText = language.DBText();
+                                    Data.Data.GetPlayerScores(2, 30, 20, dbText[0], dbText[1], true);
                                     ConsoleKeyInfo keyInfo = Console.ReadKey();
+                                    
                                     if (keyInfo.Key == ConsoleKey.D0)
                                     {
                                     }

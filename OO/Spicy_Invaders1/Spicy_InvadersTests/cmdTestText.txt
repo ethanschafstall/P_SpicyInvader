@@ -1,0 +1,1 @@
+dotnet test Spicy_InvadersTests.csproj > results.txt

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Localization
+namespace Language
 {
     /// <summary>
     /// Language interface blueprint for different language classes needed for program text.
@@ -67,5 +67,7 @@ namespace Localization
         /// <param name="optionNumber">which option is needed</param>
         /// <returns>Returns ascii art for the color menu options</returns>
         public List<string> ColorMenuText(int optionNumber);
+
+        public List<string> DBText();
     }
 }

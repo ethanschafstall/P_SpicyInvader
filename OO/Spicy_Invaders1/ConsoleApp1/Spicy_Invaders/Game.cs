@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Localization;
+using Language;
 using Entity;
 
 namespace Spicy_Invaders
@@ -88,7 +88,7 @@ namespace Spicy_Invaders
                 View.Clear();
                 View.DrawWindow(GameSettings.WINDOW_WIDTH - 2, GameSettings.WINDOW_HEIGHT - 2, _color);
                 View.DrawGameInfo(_language.GameplayText(), Player.Score, Player.Alias, GameSettings.WINDOW_WIDTH, 2, level);
-                View.DrawGameTitle(titleXPos, 2);
+                View.DrawGameTitle(titleXPos, 2, _color, _language);
                 GameLogic.CheckProjectileBounderies();
                 GameLogic.ProjectileCollisionDetection();
                 View.DrawProjectiles(GameLogic.Projectiles);

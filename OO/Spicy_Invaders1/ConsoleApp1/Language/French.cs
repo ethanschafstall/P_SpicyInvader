@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Localization
+namespace Language
 {
     public class French : ILanguage
     {
@@ -223,6 +223,11 @@ namespace Localization
                 default:
                     return new List<string> { };
             }
+        }
+
+        public List<string> DBText()
+        {
+            return new List<string> { "Pseudo", "Points" };
         }
 
         public List<string> WeaponMenuText(int optionNumber)

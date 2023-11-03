@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Localization
+namespace Language
 {
     public class English : ILanguage
     {
@@ -120,6 +120,10 @@ namespace Localization
             }
         }
 
+        public List<string> DBText()
+        {
+            return new List<string> { "Alias", "Points"};
+        }
 
         public List<string> GameplayText()
         {

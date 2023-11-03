@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spicy_Invaders;
 
+
 namespace Entity.Tests
 {
     [TestClass]
@@ -25,14 +26,14 @@ namespace Entity.Tests
             int expectedCount3 = gameEngine2.Enemies.Count + 3;
 
             // Act
-            gameEngine.SpawnEnemy();
+            gameEngine.SpawnEnemy(false);
 
-            gameEngine2.SpawnEnemy();
-            gameEngine2.SpawnEnemy();
+            gameEngine2.SpawnEnemy(false);
+            gameEngine2.SpawnEnemy(false);
 
-            gameEngine3.SpawnEnemy();
-            gameEngine3.SpawnEnemy();
-            gameEngine3.SpawnEnemy();
+            gameEngine3.SpawnEnemy(false);
+            gameEngine3.SpawnEnemy(false);
+            gameEngine3.SpawnEnemy(false);
 
             // Assert
             Assert.AreEqual(expectedCount, gameEngine.Enemies.Count);
@@ -49,14 +50,14 @@ namespace Entity.Tests
             GameEngine gameEngine3 = new GameEngine();
 
             // Act
-            gameEngine.SpawnEnemy();
+            gameEngine.SpawnEnemy(false);
             gameEngine.SpawnEnemy(true);
 
             gameEngine2.SpawnEnemy(true);
             gameEngine2.SpawnEnemy(true);
 
-            gameEngine3.SpawnEnemy();
-            gameEngine3.SpawnEnemy();
+            gameEngine3.SpawnEnemy(false);
+            gameEngine3.SpawnEnemy(false);
 
             // Assert
             Assert.AreNotEqual(EnemyType.Melon, gameEngine.Enemies.First().Type);

@@ -24,7 +24,13 @@ namespace Spicy_Invaders
             this.PlayerShip = new PlayerShip(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
             this.ControlKeys = consoleKeys;
         }
-
+        public GameEngine()
+        {
+            this.Enemies = new List<Enemy>();
+            this.Projectiles = new List<Projectile>();
+            this.PlayerShip = new PlayerShip(GameSettings.PLAYER_START_POS.X, GameSettings.PLAYER_START_POS.Y);
+            this.ControlKeys = new List<ConsoleKey>() { ConsoleKey.LeftArrow, ConsoleKey.RightArrow };
+        }
         /// <summary>
         /// Method responsible for creating new enemy objects and adding them to the Enemies list. 
         /// </summary>
