@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spicy_Invaders
+namespace Entity
 {
     /// <summary>
     /// PlayerShip Classes which inherits from SmartEntity
@@ -19,7 +19,7 @@ namespace Spicy_Invaders
         public PlayerShip(int x, int y) 
         {
             this.Position = new Vector(x, y);
-            this.Velocity = new Vector(1, 1);
+            this.Velocity = new Vector(2, 1);
             this.FaceDirection = Direction.Up;
             this.HealthPoints = 3;
             this.EntityWidth = 2;

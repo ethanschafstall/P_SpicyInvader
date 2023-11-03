@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace SQL_connection
+namespace DB_Connection
 {
     public static class Data
     {
@@ -33,7 +33,8 @@ namespace SQL_connection
             catch (Exception)
             {
 
-                Console.Write("\nAtempt to connect has failed");
+                Console.Write("\nFailed to connect.");
+                Thread.Sleep(2000);
                 return false;
             }
 

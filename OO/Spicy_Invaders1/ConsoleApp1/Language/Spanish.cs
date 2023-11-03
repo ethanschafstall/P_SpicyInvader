@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spicy_Invaders
+namespace Localization
 {
     public class Spanish : ILanguage
     {
@@ -46,10 +46,7 @@ namespace Spicy_Invaders
                     return new List<string> { };
             }
         }
-
-        
-
-        public List<string> GameplayMenuText(int optionNumber)
+        public List<string> ControlsMenuText(int optionNumber)
         {
             switch (optionNumber)
             {
@@ -60,15 +57,69 @@ namespace Spicy_Invaders
                                             "  \\ V / (_) | |\\ V /  __/ |   ",
                                             "   \\_/ \\___/|_| \\_/ \\___|_|   "};
                 case 1:
-                    return new List<string> {"   _                        ",
-                                            "  /_\\  _ __ _ __ ___   __ _ ",
-                                            " //_\\\\| '__| '_ ` _ \\ / _` |",
-                                            "/  _  \\ |  | | | | | | (_| |",
-                                            "\\_/ \\_/_|  |_| |_| |_|\\__,_|"};
+                    return new List<string>{"  __          __      __  ",
+                                            " / /         / /      \\ \\ ",
+                                            "/ /_____    / /   _____\\ \\",
+                                            "\\ \\_____|  / /   |_____/ /",
+                                            " \\_\\      /_/         /_/ "};
+                case 2:
+                    return new List<string> {"   _        __     ___    ",
+                                            "  /_\\      / /    /   \\   ",
+                                            " //_\\\\    / /    / /\\ /   ",
+                                            "/  _  \\  / /    / /_//    ",
+                                            "\\_/ \\_/ /_/    /___,'     "};
                 default:
                     return new List<string> { };
             }
         }
+        public List<string> ColorMenuText(int optionNumber)
+        {
+            switch (optionNumber)
+            {
+                case 0:
+                    return new List<string>{"             _                ",
+                                            " /\\   /\\___ | |_   _____ _ __ ",
+                                            " \\ \\ / / _ \\| \\ \\ / / _ \\ '__|",
+                                            "  \\ V / (_) | |\\ V /  __/ |   ",
+                                            "   \\_/ \\___/|_| \\_/ \\___|_|   "};
+                case 1:
+                    return new List<string> {"   __       _        ",
+                                            "  /__\\ ___ (_) ___   ",
+                                            " / \\/// _ \\| |/ _ \\  ",
+                                            "/ _  \\ (_) | | (_) | ",
+                                            "\\/ \\_/\\___// |\\___/  ",
+                                            "         |__/        "};
+                case 2:
+                    return new List<string>{"   _             _  ",
+                                            "  /_\\  _____   _| | ",
+                                            " //_\\\\|_  / | | | | ",
+                                            "/  _  \\/ /| |_| | | ",
+                                            "\\_/ \\_/___|\\__,_|_| "};
+                case 3:
+                    return new List<string>{"                    _       ",
+                                            " /\\   /\\___ _ __ __| | ___  ",
+                                            " \\ \\ / / _ \\ '__/ _` |/ _ \\ ",
+                                            "  \\ V /  __/ | | (_| |  __/ ",
+                                            "   \\_/ \\___|_|  \\__,_|\\___| "};
+                case 4:
+                    return new List<string>{"   ___ _             ",
+                                            "  / __(_) __ _ _ __  ",
+                                            " / /  | |/ _` | '_ \\ ",
+                                            "/ /___| | (_| | | | |",
+                                            "\\____/|_|\\__,_|_| |_|"};
+                case 5:
+                    return new List<string>{"                               _        ",
+                                            "  /\\/\\   __ _  __ _  ___ _ __ | |_ __ _ ",
+                                            " /    \\ / _` |/ _` |/ _ \\ '_ \\| __/ _` |",
+                                            "/ /\\/\\ \\ (_| | (_| |  __/ | | | || (_| |",
+                                            "\\/    \\/\\__,_|\\__, |\\___|_| |_|\\__\\__,_|",
+                                            "              |___/                     "};
+                default:
+                    return new List<string> { };
+            }
+        }
+
+
 
         public List<string> GameplayText()
         {
@@ -148,12 +199,11 @@ namespace Spicy_Invaders
                                             "/ /__| (_) | | | | |_| | | (_) | |  __/\\__ \\",
                                             "\\____/\\___/|_| |_|\\__|_|  \\___/|_|\\___||___/"};
                 case 3:
-                    return new List<string> {"   __                    _     _ _ _     _           _ ",
-                                            "   \\ \\ _   _  __ _  __ _| |__ (_) (_) __| | __ _  __| |",
-                                            "    \\ \\ | | |/ _` |/ _` | '_ \\| | | |/ _` |/ _` |/ _` |",
-                                            " /\\_/ / |_| | (_| | (_| | |_) | | | | (_| | (_| | (_| |",
-                                            " \\___/ \\__,_|\\__, |\\__,_|_.__/|_|_|_|\\__,_|\\__,_|\\__,_|",
-                                            "             |___/                                     "};
+                    return new List<string> {"   _                        ",
+                                            "  /_\\  _ __ _ __ ___   __ _ ",
+                                            " //_\\\\| '__| '_ ` _ \\ / _` |",
+                                            "/  _  \\ |  | | | | | | (_| |",
+                                            "\\_/ \\_/_|  |_| |_| |_|\\__,_|"};
                 case 4:
                     return new List<string>{"   ___      _      _              _                  _                      ",
                                             "  / _ \\__ _| | ___| |_ __ _    __| | ___    ___ ___ | | ___  _ __ ___  ___  ",

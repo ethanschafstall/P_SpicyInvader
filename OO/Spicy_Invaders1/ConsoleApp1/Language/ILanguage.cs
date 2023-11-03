@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spicy_Invaders
+namespace Localization
 {
     /// <summary>
     /// Language interface blueprint for different language classes needed for program text.
@@ -12,6 +12,13 @@ namespace Spicy_Invaders
     public interface ILanguage
 
     {
+        /// <summary>
+        /// Controls Menu text options based on the option number.
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the Controls menu options</returns>
+        public List<string> ControlsMenuText(int optionNumber);
+
         /// <summary>
         /// Game Logo Method, needed for the menu prompts. 
         /// </summary>
@@ -45,12 +52,7 @@ namespace Spicy_Invaders
         /// <returns>Returns text which is displayed during active gameplay</returns>
         public List<string> GameplayText();
 
-        /// <summary>
-        /// Gameplay menu text options based on the option number.
-        /// </summary>
-        /// <param name="optionNumber">which option is needed</param>
-        /// <returns>Returns ascii art for the gameplay menu options</returns>
-        public List<string> GameplayMenuText(int optionNumber);
+
 
         /// <summary>
         /// Weapon menu text options based on the option number
@@ -59,6 +61,11 @@ namespace Spicy_Invaders
         /// <returns>Returns ascii art for the weapon menu options</returns>
         public List<string> WeaponMenuText(int optionNumber);
 
-
+        /// <summary>
+        /// Color menu text options based on the option number
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the color menu options</returns>
+        public List<string> ColorMenuText(int optionNumber);
     }
 }
