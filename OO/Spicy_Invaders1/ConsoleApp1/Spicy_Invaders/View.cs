@@ -50,12 +50,12 @@ namespace Spicy_Invaders
         private static List<ConsoleColor> _melonColors;
 
         /// <summary>
-        /// string list for pepper(player) enemy sprite.
+        /// string list for pepper(player) sprite.
         /// </summary>
         private static List<string> _pepperSprite;
 
         /// <summary>
-        /// consolecolor list for pepper(the player) enemy sprite colors.
+        /// consolecolor list for pepper(the player) sprite colors.
         /// </summary>
         private static List<ConsoleColor> _pepperColors;
 
@@ -401,12 +401,12 @@ namespace Spicy_Invaders
         /// <summary>
         /// Method responsible for drawing/display game info during gameplay.
         /// </summary>
-        /// <param name="text"></param>
-        /// <param name="score"></param>
-        /// <param name="name"></param>
-        /// <param name="xpos"></param>
-        /// <param name="ypos"></param>
-        /// <param name="wave"></param>
+        /// <param name="text">the text to be displayed</param>
+        /// <param name="score">the score to be displayed</param>
+        /// <param name="name">the name to be displayed</param>
+        /// <param name="xpos">x position where to start displaying the title</param>
+        /// <param name="ypos">y position where to start displaying the title</param>
+        /// <param name="wave">current wave(level)</param>
         public static void DrawGameInfo(List<string> text, int score, string name, int xpos, int ypos, int wave)
         {
             string nameAndScore = "";
@@ -447,6 +447,17 @@ namespace Spicy_Invaders
             }
             Console.ResetColor();
         }
+        public static void Credits(int xpos, int ypos, ConsoleColor color)
+        {
+            List<string> text = new List<string> { "Ethan Schafstall", "CID2B", "ETML", "2023" };
+            Console.ForegroundColor = color;
+            for (int i = 0; i < text.Count; i++)
+            {
+                Console.SetCursorPosition(xpos, ypos + i);
+                Console.Write(text[i]);
 
+            }
+            Console.ResetColor();
+        }
     }
 }

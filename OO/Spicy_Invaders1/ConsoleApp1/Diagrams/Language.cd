@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Language.English" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAIAACABAAAAACCAAAEAAAAAAAAACAAAAAAIA=</HashCode>
+      <FileName>Language\English.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Language.French" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAIAACABAAAAACCAAAEAAAAAAAAACAAAAAAIA=</HashCode>
+      <FileName>Language\French.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Language.Spanish" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAIAACABAAAAACCAAAEAAAAAAAAACAAAAAAIA=</HashCode>
+      <FileName>Language\Spanish.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Language.ILanguage">
+    <Position X="9" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAIAACABAAAAACCAAAEAAAAAAAAACAAAAAAIA=</HashCode>
+      <FileName>Language\ILanguage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

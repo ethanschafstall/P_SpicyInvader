@@ -5,9 +5,13 @@ using Entity;
 
 namespace Spicy_Invaders
 {
+
     public class Program
     {
-        enum MenuList
+        /// <summary>
+        /// enum for keeping track of menu navigation in MenuNav method.
+        /// </summary>
+        enum MenuName
         {
             MainMenu = 0,
             OptionsMenu = 1,
@@ -29,28 +33,55 @@ namespace Spicy_Invaders
             int currentMenu = 0;
             int selectedOption;
             bool changedSettings = false;
+            bool showCredits = false;
             View.Init(false);
-            while (!runGame)
+            while (true)
             {
                 Console.Clear();
                 Console.SetCursorPosition(0, 0);
-                View.DrawWindow(GameSettings.MENU_WINDOW_WIDTH-2, GameSettings.MENU_WINDOW_HEIGHT-2, color);
+                View.DrawWindow(GameSettings.MENU_WINDOW_WIDTH - 2, GameSettings.MENU_WINDOW_HEIGHT - 2, color);
+                
+                if (showCredits) 
+                { 
+                    View.Credits(30,1,color);
+                    Console.ReadKey();
+                    showCredits = false;
+                }
+                
                 selectedOption = menuList[currentMenu].Run();
-                MenuNav(ref runGame, ref currentMenu, ref language, ref changedSettings, ref weapon, ref color, ref controls, selectedOption);
+                MenuNav(ref showCredits, ref runGame, ref currentMenu, ref language, ref changedSettings, ref weapon, ref color, ref controls, selectedOption);
+                
                 if (changedSettings) { menuList = CreateMenuList(language, color); }
                 changedSettings = false;
+                
+                if (runGame)
+                {
+                    View.Init(true);
+                    new Game(language, weapon, color, controls).Run();
+
+                }
             }
-            View.Init(true);
-            new Game(language, weapon, color, controls).Run();
 
         }
 
-        static void MenuNav(ref bool runGame, ref int currentMenu, ref ILanguage language, ref bool changedSettings, ref WeaponType weapon, ref ConsoleColor color, ref List<ConsoleKey> controlKeys, int selectedOption)
+        /// <summary>
+        /// menunav for navigating through the different menu screens
+        /// </summary>
+        /// <param name="showCredits">ref bool is credit screen should be displayed</param>
+        /// <param name="runGame">ref bool if game is to be run</param>
+        /// <param name="currentMenu">ref int which menu the user is on</param>
+        /// <param name="language">ref Ilanguage which language the program is in</param>
+        /// <param name="changedSettings">ref bool if game settings are to be changed</param>
+        /// <param name="weapon">ref weapontype for changing the players weapon</param>
+        /// <param name="color">ref consolecolor for changing the color theme</param>
+        /// <param name="controlKeys">ref consolekey for changing the game controls</param>
+        /// <param name="selectedOption">selected option which menu option the user choose</param>
+        static void MenuNav(ref bool showCredits, ref bool runGame, ref int currentMenu, ref ILanguage language, ref bool changedSettings, ref WeaponType weapon, ref ConsoleColor color, ref List<ConsoleKey> controlKeys, int selectedOption)
         {
 
             switch (currentMenu)
             {
-                case (int)MenuList.MainMenu:
+                case (int)MenuName.MainMenu:
                     switch (selectedOption)
                     {
                         case 0:
@@ -67,7 +98,7 @@ namespace Spicy_Invaders
                                     List<string> dbText = language.DBText();
                                     Data.Data.GetPlayerScores(2, 30, 20, dbText[0], dbText[1], true);
                                     ConsoleKeyInfo keyInfo = Console.ReadKey();
-                                    
+
                                     if (keyInfo.Key == ConsoleKey.D0)
                                     {
                                     }
@@ -76,33 +107,39 @@ namespace Spicy_Invaders
 
                             }
                             break;
-                    }
-                    break;
-                case (int)MenuList.OptionsMenu:
-                    switch (selectedOption)
-                    {
-                        case 0:
-                            currentMenu = (int)MenuList.MainMenu;
-                            break;
-                        case 1:
-                            currentMenu = (int)MenuList.LanguageMenu;
-                            break;
-                        case 2:
-                            currentMenu = (int)MenuList.ControlsMenu;
-                            break;
                         case 3:
-                            currentMenu = (int)MenuList.WeaponsMenu;
+                            showCredits = true;
                             break;
                         case 4:
-                            currentMenu = (int)MenuList.ColorsMenu;
+                            Environment.Exit(0);
                             break;
                     }
                     break;
-                case (int)MenuList.LanguageMenu:
+                case (int)MenuName.OptionsMenu:
                     switch (selectedOption)
                     {
                         case 0:
-                            currentMenu = (int)MenuList.OptionsMenu;
+                            currentMenu = (int)MenuName.MainMenu;
+                            break;
+                        case 1:
+                            currentMenu = (int)MenuName.LanguageMenu;
+                            break;
+                        case 2:
+                            currentMenu = (int)MenuName.ControlsMenu;
+                            break;
+                        case 3:
+                            currentMenu = (int)MenuName.WeaponsMenu;
+                            break;
+                        case 4:
+                            currentMenu = (int)MenuName.ColorsMenu;
+                            break;
+                    }
+                    break;
+                case (int)MenuName.LanguageMenu:
+                    switch (selectedOption)
+                    {
+                        case 0:
+                            currentMenu = (int)MenuName.OptionsMenu;
                             break;
                         case 1:
                             language = new English();
@@ -117,9 +154,9 @@ namespace Spicy_Invaders
                             changedSettings = true;
                             break;
                     }
-                    currentMenu = (int)MenuList.OptionsMenu;
+                    currentMenu = (int)MenuName.OptionsMenu;
                     break;
-                case (int)MenuList.ControlsMenu:
+                case (int)MenuName.ControlsMenu:
                     switch (selectedOption)
                     {
                         case 1:
@@ -129,9 +166,9 @@ namespace Spicy_Invaders
                             controlKeys = new List<ConsoleKey> { ConsoleKey.A, ConsoleKey.D };
                             break;
                     }
-                    currentMenu = (int)MenuList.OptionsMenu;
+                    currentMenu = (int)MenuName.OptionsMenu;
                     break;
-                case (int)MenuList.WeaponsMenu:
+                case (int)MenuName.WeaponsMenu:
                     switch (selectedOption)
                     {
                         case 1:
@@ -145,9 +182,9 @@ namespace Spicy_Invaders
                             weapon = WeaponType.MissileLauncher;
                             break;
                     }
-                    currentMenu = (int)MenuList.OptionsMenu;
+                    currentMenu = (int)MenuName.OptionsMenu;
                     break;
-                case (int)MenuList.ColorsMenu:
+                case (int)MenuName.ColorsMenu:
                     switch (selectedOption)
                     {
 
@@ -172,12 +209,17 @@ namespace Spicy_Invaders
                             changedSettings = true;
                             break;
                     }
-                    currentMenu = (int)MenuList.OptionsMenu;
+                    currentMenu = (int)MenuName.OptionsMenu;
                     break;
 
             }
         }
-
+        /// <summary>
+        /// Method using to create the menu list for menu navigation
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
         static List<Menu> CreateMenuList(ILanguage language, ConsoleColor color)
         {
             MenuCreator creator = new MenuCreator();

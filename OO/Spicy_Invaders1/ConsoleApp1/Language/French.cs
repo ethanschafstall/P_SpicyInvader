@@ -307,7 +307,7 @@ namespace Language
         /// /// <param name="menuNumber">which menu is needed</param>
         /// <param name="optionNumber">which option is needed</param>
         /// <returns>Returns text</returns>
-        public List<string> GameplayMenuOption(int optionNumber, int menuNumber)
+        public List<string> GameplayMenuOption(int menuNumber, int optionNumber)
         {
             if (menuNumber == 0)
             {
@@ -315,7 +315,7 @@ namespace Language
                 switch (optionNumber)
                 {
                     case 0:
-                        return new List<string> { "Quitter menu (O)" };
+                        return new List<string> { "Quitter menu" };
                     case 1:
                         return new List<string> { "Theme" };
                     case 2:

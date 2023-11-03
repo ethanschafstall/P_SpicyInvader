@@ -9,6 +9,9 @@ using Language;
 
 namespace Spicy_Invaders
 {
+    /// <summary>
+    /// Class for creating all the different menus used throught the game
+    /// </summary>
     public class MenuCreator
     {
         private MenuItem _prompt;
@@ -80,9 +83,39 @@ namespace Spicy_Invaders
 
             for (int i = 0; i < 3; i++)
             {
-                myMenuItems.Add(new MenuItem(Language.ControlsMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
+                myMenuItems.Add(new MenuItem(Language.ControlsMenuText(0), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
             return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+        }
+        public Menu GameplayOpitionsMenu(int whichMenu)
+        {
+            List<MenuItem> myMenuItems = new List<MenuItem>();
+
+            if (whichMenu == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    myMenuItems.Add(new MenuItem(Language.GameplayMenuOption(0, i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
+                }
+                return new Menu(myMenuItems, 2, 4);
+            }
+            else if (whichMenu == 1)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    myMenuItems.Add(new MenuItem(Language.GameplayMenuOption(1, i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
+                }
+                return new Menu(myMenuItems, 2, 4);
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    myMenuItems.Add(new MenuItem(Language.GameplayMenuOption(2, i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
+                }
+                return new Menu(myMenuItems, 2, 4);
+            }
+
         }
     }
 }

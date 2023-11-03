@@ -1,5 +1,8 @@
 ﻿namespace ConsoleMenu
 {
+    /// <summary>
+    /// Menu class for creating and using console menus;
+    /// </summary>
     public class Menu
     {
         private MenuItem _menuPrompt;

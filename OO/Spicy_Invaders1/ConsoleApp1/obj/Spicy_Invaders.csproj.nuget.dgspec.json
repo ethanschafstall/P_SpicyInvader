@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj": {}
+    "C:\\Users\\School\\spicy\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj": {}
   },
   "projects": {
-    "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj": {
+    "C:\\Users\\School\\spicy\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+        "projectUniqueName": "C:\\Users\\School\\spicy\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
         "projectName": "Spicy_Invaders",
-        "projectPath": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
-        "packagesPath": "C:\\Users\\po01imj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\po01imj\\Documents\\GitHub\\P_SpicyInvader\\OO\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
+        "projectPath": "C:\\Users\\School\\spicy\\OO\\Spicy_Invaders1\\ConsoleApp1\\Spicy_Invaders.csproj",
+        "packagesPath": "C:\\Users\\School\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\School\\spicy\\OO\\Spicy_Invaders1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\po01imj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\School\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,16 +51,35 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.24, 6.0.24]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.24, 6.0.24]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.24, 6.0.24]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.24, 6.0.24]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -13,11 +13,20 @@ namespace Spicy_Invaders
     public class GameEngine
     {
         /// <summary>
-        /// 
+        /// Keys for moving player
         /// </summary>
         public List<ConsoleKey> ControlKeys { get; set; }
+        /// <summary>
+        /// enemies
+        /// </summary>
         public List<Enemy> Enemies { get; }
+        /// <summary>
+        /// all projectiles
+        /// </summary>
         public List<Projectile> Projectiles { get; }
+        /// <summary>
+        /// The player controlled ship
+        /// </summary>
         public PlayerShip PlayerShip { get; }
         public GameEngine(List<ConsoleKey> consoleKeys)
         {
@@ -149,6 +158,7 @@ namespace Spicy_Invaders
                     {
                         bool yAxisCondition = false;
 
+                        // Laser projectiles travel faster than others so a special condition is needed
                         if (Projectiles[i] is Laser)
                         {
                             // Special condition for Laser type
@@ -162,7 +172,7 @@ namespace Spicy_Invaders
                             yAxisCondition = Projectiles[i].Position.Y <= Enemies[j].Position.Y + 3 &&
                                             Projectiles[i].Position.Y >= Enemies[j].Position.Y;
                         }
-
+                        // If the projectile y and x position overlap with enemy x and y position > enemy is hit
                         if (yAxisCondition &&
                             Projectiles[i].Position.X >= Enemies[j].Position.X &&
                             Projectiles[i].Position.X <= Enemies[j].Position.X + Enemies[j].EntityWidth)
@@ -173,6 +183,7 @@ namespace Spicy_Invaders
                         }
                     }
                 }
+                // if projectiles are moving down (meaning they were shot by enemies) than check x and y positions with player x and y positions
                 else if (Projectiles[i].TravelDirection == Direction.Down)
                 {
                     if (Projectiles[i].Position.Y < PlayerShip.Position.Y &&
@@ -237,6 +248,7 @@ namespace Spicy_Invaders
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 Direction direction = Direction.None;
 
+                // using ifs since can't using the ConsoleKey list containing controls in a switch case
                 if (pressedKey.Key == leftKey)
                 {
                     direction = Direction.Left;
@@ -273,6 +285,9 @@ namespace Spicy_Invaders
                 }
             }
         }
+        /// <summary>
+        /// resets hit animations for player and/or enemies
+        /// </summary>
         public void ResetHitAnimations()
         {
             for (int i = 0; i < Enemies.Count; i++)
@@ -281,6 +296,10 @@ namespace Spicy_Invaders
             }
             PlayerShip.IsHit = false;
         }
+        /// <summary>
+        /// Removes dead enemies from the enemy list
+        /// </summary>
+        /// <returns></returns>
         public int RemoveDeadEnemey()
         {
             int points = 0;
@@ -294,7 +313,9 @@ namespace Spicy_Invaders
             }
             return points;
         }
-
+        /// <summary>
+        /// updates explosion levels based on the current explosion level.
+        /// </summary>
         public void UpdateExplosionLevel()
         {
             for (int i = 0; i < Enemies.Count; i++)

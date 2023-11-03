@@ -275,7 +275,7 @@ namespace Language
                 switch (optionNumber)
                 {
                     case 0:
-                        return new List<string> { "Cerrar menú (O)" };
+                        return new List<string> { "Cerrar menú" };
                     case 1:
                         return new List<string> { "Paleta de colores" };
                     case 2:
@@ -288,6 +288,7 @@ namespace Language
             {
                 switch (optionNumber)
                 {
+                    
                     case 0:
                         return new List<string> { "Rojo" };
                     case 1:

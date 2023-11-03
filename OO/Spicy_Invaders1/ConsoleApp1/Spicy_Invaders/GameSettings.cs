@@ -7,6 +7,9 @@ using Entity;
 
 namespace Spicy_Invaders
 {
+    /// <summary>
+    /// Class containing all different const/static values needed in game and program.
+    /// </summary>
     public class GameSettings
     {
         public const int MENU_OPTIONS_VERTICAL_PADDING = 1;

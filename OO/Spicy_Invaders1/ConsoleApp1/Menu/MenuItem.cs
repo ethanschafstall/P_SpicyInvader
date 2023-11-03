@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleMenu
 {
+    /// <summary>
+    /// Menu item for menu options needed to create a menu.
+    /// </summary>
     public class MenuItem
     {
         private List<string> _text;
