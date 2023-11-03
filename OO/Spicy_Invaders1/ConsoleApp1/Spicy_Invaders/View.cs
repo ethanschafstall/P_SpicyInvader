@@ -1,5 +1,6 @@
 ﻿using Entity;
 using System.Drawing;
+using Language;
 
 namespace Spicy_Invaders
 {
@@ -102,10 +103,6 @@ namespace Spicy_Invaders
         /// consolecolor list for explosion level sprites.
         /// </summary>
         private static List<ConsoleColor> _explosionColors;
-        /// <summary>
-        /// string list for the ascii art logo.
-        /// </summary>
-        private static List<string> logo;
 
         /// <summary>
         /// static constructor, which initializes all class variables.
@@ -150,14 +147,6 @@ namespace Spicy_Invaders
 
             _explosionColors = new List<ConsoleColor> { ConsoleColor.Yellow, ConsoleColor.DarkYellow, ConsoleColor.Red };
 
-            logo = new List<string> {  "   _____       _            _____                     _               ",
-                                                    "  / ____|     (_)          |_   _|                   | |              " ,
-                                                    " | (___  _ __  _  ___ _   _  | |  _ ____   ____ _  __| | ___ _ __ ___ " ,
-                                                    "  \\___ \\| '_ \\| |/ __| | | | | | | '_ \\ \\ / / _` |/ _` |/ _ \\ '__/ __|" ,
-                                                    "  ____) | |_) | | (__| |_| |_| |_| | | \\ V / (_| | (_| |  __/ |  \\__ \\",
-                                                    " |_____/| .__/|_|\\___|\\__, |_____|_| |_|\\_/ \\__,_|\\__,_|\\___|_|  |___/",
-                                                    "        | |            __/ |                                          ",
-                                                    "        |_|           |___/                                           " };
         }
 
         /// <summary>
@@ -446,14 +435,17 @@ namespace Spicy_Invaders
         /// </summary>
         /// <param name="xpos">x position where to start displaying the title</param>
         /// <param name="ypos">y position where to start displaying the title</param>
-        public static void DrawGameTitle(int xpos, int ypos)
+        public static void DrawGameTitle(int xpos, int ypos, ConsoleColor color, ILanguage language)
         {
+            List<string> logo = language.Logo();
+            Console.ForegroundColor = color;
             for (int i = 0; i < logo.Count; i++)
             {
                 Console.SetCursorPosition(xpos, ypos + i);
                 Console.Write(logo[i]);
 
             }
+            Console.ResetColor();
         }
 
     }
