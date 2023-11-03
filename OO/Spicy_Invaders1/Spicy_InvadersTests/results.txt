@@ -1,0 +1,12 @@
+  Identification des projets … restaurer...
+  Tous les projets sont … jour pour la restauration.
+  Spicy_Invaders -> C:\Users\po01imj\Documents\GitHub\P_SpicyInvader\OO\Spicy_Invaders1\ConsoleApp1\bin\Debug\net6.0\Spicy_Invaders.dll
+  Spicy_InvadersTests -> C:\Users\po01imj\Documents\GitHub\P_SpicyInvader\OO\Spicy_Invaders1\Spicy_InvadersTests\bin\Debug\net6.0\Spicy_InvadersTests.dll
+S‚rie de tests pour C:\Users\po01imj\Documents\GitHub\P_SpicyInvader\OO\Spicy_Invaders1\Spicy_InvadersTests\bin\Debug\net6.0\Spicy_InvadersTests.dll (.NETCoreApp,Version=v6.0)
+Outil en ligne de commande d'ex‚cution de tests Microsoft (R), version 17.2.0 (x64)
+Copyright (c) Microsoft Corporation. Tous droits r‚serv‚s.
+
+D‚marrage de l'ex‚cution de tests, patientez...
+Au total, 1 fichiers de test ont correspondu au modŠle sp‚cifi‚.
+
+R‚ussi!  - ‚checÿ:     0, r‚ussiteÿ:     7, ignor‚e(s)ÿ:     0, totalÿ:     7, dur‚eÿ: 20 ms - Spicy_InvadersTests.dll (net6.0)
