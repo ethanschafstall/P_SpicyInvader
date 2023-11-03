@@ -125,7 +125,7 @@ namespace Language
 
         public List<string> GameplayText()
         {
-            return new List<string> { "Niveau", "Options", "Joueur 1" };
+            return new List<string> { "Vague", "Options", "Joueur 1" };
         }
 
         public List<string> Logo()

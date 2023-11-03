@@ -123,7 +123,7 @@ namespace Language
 
         public List<string> GameplayText()
         {
-            return new List<string> { "Nivel", "Opciones", "Jugador  1" };
+            return new List<string> { "Oleada", "Opciones", "Jugador  1" };
         }
 
         public List<string> Logo()
