@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
+    /// <summary>
+    /// Bullet projectile class for the gun weapon. Inherents from Projectile.
+    /// </summary>
     public class Bullet : Projectile
     {
         public Bullet(int x, int y, Direction direction = Direction.Up)

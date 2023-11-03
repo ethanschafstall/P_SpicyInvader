@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
+    /// <summary>
+    /// Laser projectile class for the laser gun weapon. Inherents from Projectile.
+    /// </summary>
     public class Laser : Projectile
     {
         public Laser(int x, int y, Direction direction = Direction.Up)
