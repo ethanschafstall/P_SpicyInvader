@@ -406,16 +406,16 @@ namespace Spicy_Invaders
         /// <param name="name"></param>
         /// <param name="xpos"></param>
         /// <param name="ypos"></param>
-        /// <param name="level"></param>
-        public static void DrawGameInfo(List<string> text, int score, string name, int xpos, int ypos, int level)
+        /// <param name="wave"></param>
+        public static void DrawGameInfo(List<string> text, int score, string name, int xpos, int ypos, int wave)
         {
             string nameAndScore = "";
-            string levelText = $"{text[0]} : {level}";
+            string waveText = $"{text[0]} : {wave}";
             string optionsText = $"{text[1]}(O)";
 
             Console.SetCursorPosition(2, ypos);
 
-            Console.Write(levelText);
+            Console.Write(waveText);
             Console.SetCursorPosition(2, ypos + 2);
             Console.Write(optionsText);
 
