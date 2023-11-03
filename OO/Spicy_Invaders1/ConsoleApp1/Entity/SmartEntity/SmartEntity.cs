@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entity
 {
     /// <summary>
-    /// SmartEntity are all objects that are "Alive" (player and enemies).
+    /// SmartEntity are all objects that are "Alive", so they don't just move but also interact with other objects (player and enemies).
     /// </summary>
     public class SmartEntity : MovableEntity
     {
@@ -82,7 +82,7 @@ namespace Entity
         }
 
         /// <summary>
-        /// Virtual hit method.
+        /// Virtual hit method for when an entity is hit by a projetile.
         /// </summary>
         /// <param name="projectile">The projectile which hit the entity.</param>
         public virtual void Hit(Projectile projectile) 

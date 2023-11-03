@@ -109,7 +109,7 @@
             do
             {
                 MenuWriter.Write(_menuPrompt, _menuItems, _defaultForegroundColor, _defaultBackgroundColor, _selectedIndex, _xPos, _yPos);
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 keyPressed = keyInfo.Key;
 
 

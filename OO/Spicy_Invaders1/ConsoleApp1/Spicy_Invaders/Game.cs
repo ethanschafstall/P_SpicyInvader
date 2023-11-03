@@ -34,7 +34,7 @@ namespace Spicy_Invaders
             int counter = 0;
             bool gameOver = false;
             string wonOrLost = "";
-            int level = 1;
+            int wave = 1;
             bool spawnEnemies = true;
             int amountToSpawn = 5;
             int melonAmount = 1;
@@ -44,11 +44,11 @@ namespace Spicy_Invaders
                 if ((counter == 0 || counter % enemySpawnRate == 0))
                 {
 
-                    if (level % 3 == 0 && amountToSpawn == 0)
+                    if (wave % 3 == 0 && amountToSpawn == 0)
                     {
-                        melonAmount = level / 3;
+                        melonAmount = wave / 3;
                     }
-                    if (level % 3 == 0 && melonAmount != 0)
+                    if (wave % 3 == 0 && melonAmount != 0)
                     {
                         spawnEnemies = false;
                         GameLogic.SpawnEnemy(true);
@@ -60,13 +60,13 @@ namespace Spicy_Invaders
                     }
                     if (spawnEnemies && (GameLogic.Enemies.Count < amountToSpawn))
                     {
-                        GameLogic.SpawnEnemy(false);
+                        GameLogic.SpawnEnemy(false, wave);
                     }
                     if (GameLogic.Enemies.Count == 0)
                     {
                         amountToSpawn += 1;
                         spawnEnemies = true;
-                        level++;
+                        wave++;
                     }
 
                 }
@@ -87,7 +87,7 @@ namespace Spicy_Invaders
                 GameLogic.PlayerControls();
                 View.Clear();
                 View.DrawWindow(GameSettings.WINDOW_WIDTH - 2, GameSettings.WINDOW_HEIGHT - 2, _color);
-                View.DrawGameInfo(_language.GameplayText(), Player.Score, Player.Alias, GameSettings.WINDOW_WIDTH, 2, level);
+                View.DrawGameInfo(_language.GameplayText(), Player.Score, Player.Alias, GameSettings.WINDOW_WIDTH, 2, wave);
                 View.DrawGameTitle(titleXPos, 2, _color, _language);
                 GameLogic.CheckProjectileBounderies();
                 GameLogic.ProjectileCollisionDetection();

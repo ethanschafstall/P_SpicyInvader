@@ -33,6 +33,8 @@ namespace Spicy_Invaders
             while (!runGame)
             {
                 Console.Clear();
+                Console.SetCursorPosition(0, 0);
+                View.DrawWindow(GameSettings.MENU_WINDOW_WIDTH-2, GameSettings.MENU_WINDOW_HEIGHT-2, color);
                 selectedOption = menuList[currentMenu].Run();
                 MenuNav(ref runGame, ref currentMenu, ref language, ref changedSettings, ref weapon, ref color, ref controls, selectedOption);
                 if (changedSettings) { menuList = CreateMenuList(language, color); }
@@ -42,6 +44,7 @@ namespace Spicy_Invaders
             new Game(language, weapon, color, controls).Run();
 
         }
+
         static void MenuNav(ref bool runGame, ref int currentMenu, ref ILanguage language, ref bool changedSettings, ref WeaponType weapon, ref ConsoleColor color, ref List<ConsoleKey> controlKeys, int selectedOption)
         {
 
@@ -178,6 +181,7 @@ namespace Spicy_Invaders
         static List<Menu> CreateMenuList(ILanguage language, ConsoleColor color)
         {
             MenuCreator creator = new MenuCreator();
+            creator.Prompt.SelectedFore = color;
             List<Menu> menuList = new List<Menu>();
             creator.Language = language;
             creator.Color = color;

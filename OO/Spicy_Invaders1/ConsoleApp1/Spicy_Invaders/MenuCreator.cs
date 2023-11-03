@@ -11,15 +11,17 @@ namespace Spicy_Invaders
 {
     public class MenuCreator
     {
-        private MenuItem prompt;
+        private MenuItem _prompt;
+        public MenuItem Prompt { get { return _prompt; } set { _prompt = value; } }
         public MenuCreator()
         {
             Language = new English();
-            prompt = new MenuItem(Language.Logo(), ConsoleColor.White, ConsoleColor.Black, GameSettings.MENU_PROMPT_VERTICAL_PADDING, 0);
             Color = ConsoleColor.White;
+            _prompt = new MenuItem(Language.Logo(), ConsoleColor.White, ConsoleColor.Black, GameSettings.MENU_PROMPT_VERTICAL_PADDING, 0);
         }
         public ILanguage Language { get; set; }
         public ConsoleColor Color { get; set; }
+
         public Menu MainMenu()
         {
             List<MenuItem> myMenuItems = new List<MenuItem>();
@@ -28,7 +30,7 @@ namespace Spicy_Invaders
                 myMenuItems.Add(new MenuItem(Language.MainMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
 
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
         public Menu OpitionsMenu()
         {
@@ -38,7 +40,7 @@ namespace Spicy_Invaders
             {
                 myMenuItems.Add(new MenuItem(Language.OpitionsMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
 
         public Menu LanguageMenu()
@@ -49,7 +51,7 @@ namespace Spicy_Invaders
             {
                 myMenuItems.Add(new MenuItem(Language.ChooseLanguageMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
 
         public Menu WeaponMenu()
@@ -60,7 +62,7 @@ namespace Spicy_Invaders
                 myMenuItems.Add(new MenuItem(Language.WeaponMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
 
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
         public Menu ColorMenu()
         {
@@ -70,7 +72,7 @@ namespace Spicy_Invaders
             {
                 myMenuItems.Add(new MenuItem(Language.ColorMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
         public Menu ControlsMenu()
         {
@@ -80,7 +82,7 @@ namespace Spicy_Invaders
             {
                 myMenuItems.Add(new MenuItem(Language.ControlsMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
-            return new Menu(prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
+            return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
     }
 }
