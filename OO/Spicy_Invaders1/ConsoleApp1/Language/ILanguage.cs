@@ -43,7 +43,7 @@ namespace Language
         /// Language Menu text options based on the option number.
         /// </summary>
         /// <param name="optionNumber">which option is needed</param>
-        /// <returns>Returns ascii art for the main menu options</returns>
+        /// <returns>Returns ascii art for the Language options</returns>
         public List<string> ChooseLanguageMenuText(int optionNumber);
 
         /// <summary>
@@ -51,7 +51,6 @@ namespace Language
         /// </summary>
         /// <returns>Returns text which is displayed during active gameplay</returns>
         public List<string> GameplayText();
-
 
 
         /// <summary>
@@ -68,6 +67,18 @@ namespace Language
         /// <returns>Returns ascii art for the color menu options</returns>
         public List<string> ColorMenuText(int optionNumber);
 
+        /// <summary>
+        /// DB text for scoreboard screen
+        /// </summary>
+        /// <returns>Returns text</returns>
         public List<string> DBText();
+
+        /// <summary>
+        /// text for small menu that user can open during gameplay
+        /// </summary>
+        /// /// <param name="menuNumber">which menu is needed</param>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns text</returns>
+        public List<string> GameplayMenuOption(int optionNumber, int menuNumber);
     }
 }

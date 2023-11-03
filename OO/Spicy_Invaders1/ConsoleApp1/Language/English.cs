@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Language
 {
+    /// <summary>
+    /// English Language class for menu and gameplay text.
+    /// </summary>
     public class English : ILanguage
     {
         public English() { }
 
+        /// <summary>
+        /// Language Menu text options based on the option number.
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the Language options</returns>
         public List<string> ChooseLanguageMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -45,7 +53,11 @@ namespace Language
                     return new List<string> { };
             }
         }
-
+        /// <summary>
+        /// Color menu text options based on the option number
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the color menu options</returns>
         public List<string> ColorMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -93,6 +105,11 @@ namespace Language
             }
         }
 
+        /// <summary>
+        /// Controls Menu text options based on the option number.
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the Controls menu options</returns>
         public List<string> ControlsMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -119,17 +136,27 @@ namespace Language
                     return new List<string> { };
             }
         }
-
+        /// <summary>
+        /// DB text for scoreboard screen
+        /// </summary>
+        /// <returns>Returns list of strings containing the text</returns>
         public List<string> DBText()
         {
             return new List<string> { "Alias", "Points"};
         }
-
+        /// <summary>
+        /// Text which is displayed during active gameplay.
+        /// </summary>
+        /// <returns>Returns text which is displayed during active gameplay</returns>
         public List<string> GameplayText()
         {
             return new List<string> { "Wave", "Options", "Player 1" };
         }
 
+        /// <summary>
+        /// Game Logo Method, needed for the menu prompts. 
+        /// </summary>
+        /// <returns>Returns ascii art for the game logo</returns>
         public List<string> Logo()
         {
             return new List<string> {  "   _____       _            _____                     _               ",
@@ -141,7 +168,11 @@ namespace Language
                                                     "        | |            __/ |                                          ",
                                                     "        |_|           |___/                                           " };
         }
-
+        /// <summary>
+        /// Main Menu text options based on the option number.
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the main menu options</returns>
         public List<string> MainMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -181,6 +212,11 @@ namespace Language
                     return new List<string> { };
             }
         }
+        /// <summary>
+        /// Options menu text options based on the option number.
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the options menu options</returns>
         public List<string> OpitionsMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -228,7 +264,11 @@ namespace Language
                     return new List<string> { };
             }
         }
-
+        /// <summary>
+        /// Weapon menu text options based on the option number
+        /// </summary>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns ascii art for the weapon menu options</returns>
         public List<string> WeaponMenuText(int optionNumber)
         {
             switch (optionNumber)
@@ -261,6 +301,63 @@ namespace Language
                 default:
                     return new List<string> { };
             }
+        }
+
+
+        /// <summary>
+        /// text for small menu that user can open during gameplay
+        /// </summary>
+        /// /// <param name="menuNumber">which menu is needed</param>
+        /// <param name="optionNumber">which option is needed</param>
+        /// <returns>Returns text</returns>
+        public List<string> GameplayMenuOption(int optionNumber, int menuNumber)
+        {
+            if (menuNumber == 0)
+            {
+
+                switch (optionNumber)
+                {
+                    case 0:
+                        return new List<string> { "Close Menu (O)" };
+                    case 1:
+                        return new List<string> { "Color Theme" };
+                    case 2:
+                        return new List<string> { "Weapon" };
+                    case 3:
+                        return new List<string> { "Quit Game" };
+                }
+            }
+            if (menuNumber == 1)
+            {
+                switch (optionNumber)
+                {
+                    case 0:
+                        return new List<string> { "Red" };
+                    case 1:
+                        return new List<string> { "Blue" };
+                    case 2:
+                        return new List<string> { "Green" };
+                    case 3:
+                        return new List<string> { "Cyan" };
+                    case 4:
+                        return new List<string> { "Magenta" };
+                }
+            }
+            else
+            {
+                switch (optionNumber)
+                {
+                    case 0:
+                        return new List<string> { "Gun" };
+                    case 1:
+                        return new List<string> { "Laser Gun" };
+                    case 2:
+                        return new List<string> { "Missile Launcher" };
+
+                }
+            }
+            return new List<string> { };
+
         }
     }
 }
