@@ -12,7 +12,9 @@ namespace Spicy_Invaders
     /// </summary>
     public class GameEngine
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public List<ConsoleKey> ControlKeys { get; set; }
         public List<Enemy> Enemies { get; }
         public List<Projectile> Projectiles { get; }
@@ -35,29 +37,26 @@ namespace Spicy_Invaders
         /// Method responsible for creating new enemy objects and adding them to the Enemies list. 
         /// </summary>
         /// <param name="isMelon">bool if is melon enemy is to be spawned</param>
-        public void SpawnEnemy(bool isMelon)
+        public void SpawnEnemy(bool isMelon, int wave = 0)
         {
             if (!isMelon)
             {
                 Random random = new Random();
-                EnemyType randomType = (EnemyType)random.Next(1, 4);
+
+                EnemyType randomType = (EnemyType)random.Next(1, 4 + wave);
+
                 int yPosition = 0;
-                int yVelocity = 0;
-                switch (randomType)
+                int yVelocity = 5;
+                
+                if ((int)randomType-3 > 3)
                 {
-                    case EnemyType.Strawberry:
-                        yPosition = 0;
-                        yVelocity = 5;
-                        break;
-                    case EnemyType.Banana:
-                        yPosition = 0;
-                        yVelocity = 5;
-                        break;
-                    case EnemyType.Grape:
-                        yPosition = 0;
-                        yVelocity = 5;
-                        break;
+                    randomType = EnemyType.Grape;
                 }
+                else
+                {
+                    randomType = (EnemyType)random.Next(1, 3);
+                }
+
                 Enemy spawnedEnemy = new Enemy(GameSettings.ENEMY_START_POS.X, GameSettings.ENEMY_START_POS.Y + yPosition, randomType, Direction.Right);
                 spawnedEnemy.Velocity = new Vector((int)GameSettings.ENEMYVELOCITY, yVelocity);
                 Enemies.Add(spawnedEnemy);
@@ -65,7 +64,7 @@ namespace Spicy_Invaders
             else
             {
                 Enemy spawnedMelon = new Enemy(GameSettings.ENEMY_START_POS.X, GameSettings.ENEMY_START_POS.Y, EnemyType.Melon, Direction.Right);
-                spawnedMelon.Velocity = new Vector(3, 3);
+                spawnedMelon.Velocity = new Vector(2, 2);
                 Enemies.Add(spawnedMelon);
             }
         }
@@ -229,6 +228,7 @@ namespace Spicy_Invaders
         /// </summary>
         public void PlayerControls()
         {
+            int maxProjectilesOnScreen = 0;
             ConsoleKey leftKey = ControlKeys[0];
             ConsoleKey rightKey = ControlKeys[1];
 
@@ -247,7 +247,24 @@ namespace Spicy_Invaders
                 }
                 if (pressedKey.Key == ConsoleKey.Spacebar)
                 {
-                    Projectiles.Add(PlayerShip.Shoot());
+                    
+                    switch (PlayerShip.Weapon)
+                    {
+                        case WeaponType.Gun:
+                            maxProjectilesOnScreen =  3;
+                            break;
+                        case WeaponType.LaserGun:
+                            maxProjectilesOnScreen = 2;
+                            break;
+                        case WeaponType.MissileLauncher:
+                            maxProjectilesOnScreen = 4;
+                            break;
+                    }
+                    if (Projectiles.Count < maxProjectilesOnScreen)
+                    {
+                        Projectiles.Add(PlayerShip.Shoot());
+
+                    }
                 }
 
                 if (!CheckPlayerBounderies(direction))
