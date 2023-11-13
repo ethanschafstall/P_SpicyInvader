@@ -83,7 +83,7 @@ namespace Spicy_Invaders
 
             for (int i = 0; i < 3; i++)
             {
-                myMenuItems.Add(new MenuItem(Language.ControlsMenuText(0), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
+                myMenuItems.Add(new MenuItem(Language.ControlsMenuText(i), Color, ConsoleColor.Black, GameSettings.MENU_OPTIONS_VERTICAL_PADDING, GameSettings.MENU_OPTIONS_HORIZONTAL_PADDING));
             }
             return new Menu(_prompt, myMenuItems, GameSettings.MENU_X_POS, GameSettings.MENU_Y_POS);
         }
